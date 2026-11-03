@@ -602,7 +602,7 @@ body.locked, body.gate-open{overflow:hidden;}
         <div class="cd-box"><b id="cdM">00</b><span>Mins</span></div>
         <div class="cd-box"><b id="cdS">00</b><span>Secs</span></div>
       </div>
-      <div class="lock-when">Unlocks at <b>11:00 PM IST</b> · 4 Nov 2026<br>
+      <div class="lock-when">Unlocks at <b>10:00 PM IST</b> · 4 Nov 2026<br>
         That's <b id="localWhen">—</b> where you are.</div>
 
       <button class="btn-try" id="tryBtn"><i class="bi bi-key-fill"></i> Try to open anyway</button>
@@ -627,8 +627,9 @@ body.locked, body.gate-open{overflow:hidden;}
 /* =====================================================
    LOCK CONFIG  — change these two things if needed
    ===================================================== */
-// 11:00 PM IST (UTC+05:30) on 4 November 2026
-const UNLOCK_AT = Date.parse('2026-11-04T23:00:00+05:30');
+// 10:00 PM IST (UTC+05:30) on 4 November 2026
+// Add #test to the address (index.html#test) to try a 20-second countdown
+const UNLOCK_AT = (location.hash === '#test') ? Date.now() + 20000 : Date.parse('2026-11-04T22:00:00+05:30');
 
 // Edit the letter here
 const LETTER = {
@@ -637,7 +638,7 @@ const LETTER = {
   paragraphs: [
     "FINALLY! Wapas aa rahe hain NZ!",
     "Pata nahi yeh airport pe padh rahe hain ya NZ pahunchne ke baad, but I know itni lambi journey ke baad kaafi tired honge. Isliye socha abhi hi bol doon, WELCOME BACK TO NZ!",
-    "Ek mahina inke bina uni mein kaafi shanti thi, especially MSB mein. Na koi Raman Chaman ki bakwaas, na random arguments aur na hi koi roz roz ka khaane wala scene. Lekin ab yeh wapas aa rahe hain toh lagta hai woh shanti bhi khatam hone wali hai. 16th ke baad milenge toh phir se wahi routine shuru ho jayegi. Inka roz poochna, "Aaj mere liye kya khaana leke aayi ho?" aur phir mera inke liye kuch na kuch le aana. Kabhi jaldi batao, kabhi zyada le aana. Pata nahi kaise, but yeh choti choti cheezein bhi routine ka part ban gayi hain. Aur honestly, achha lagega yeh sab phir se shuru hote dekhkar.",
+    "Ek mahina inke bina uni mein kaafi shanti thi, especially MSB mein. Na koi Raman Chaman ki bakwaas, na random arguments aur na hi koi roz roz ka khaane wala scene. Lekin ab yeh wapas aa rahe hain toh lagta hai woh shanti bhi khatam hone wali hai. 16th ke baad milenge toh phir se wahi routine shuru ho jayegi. Inka roz poochna, \u201cAaj mere liye kya khaana leke aayi ho?\u201d aur phir mera inke liye kuch na kuch le aana. Kabhi jaldi batao, kabhi zyada le aana. Pata nahi kaise, but yeh choti choti cheezein bhi routine ka part ban gayi hain. Aur honestly, achha lagega yeh sab phir se shuru hote dekhkar.",
     "I hope India mein inka time bohot achha gaya, family ke saath achhe se time spend kiya aur sabse milna ho gaya. Abhi ke liye journey ke baad aaram karna aur properly settle ho jaana. Baaki 16th ke baad milte hain, phir inki aur meri usual bakwaas, khaana aur arguments sab wapas chalu.",
     "Welcome back, Raman Chaman! NZ mein inka phir se swagat hai."
   ],
@@ -677,7 +678,7 @@ const NOPE = [
   "Still sealed. The riddle said wait.",
   "Patience, pilot-in-training. Not yet.",
   "Even the seatbelt sign is laughing at you.",
-  "Locked tight until eleven in the land of chai."
+  "Locked tight until ten in the land of chai."
 ];
 let nopeIdx = 0;
 
