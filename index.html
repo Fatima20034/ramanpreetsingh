@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raman</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#141414; --panel:#181818; --panel-2:#0b0b0b; --red:#e50914; --white:#fff;
+  --grey-1:rgba(255,255,255,.7); --grey-2:rgba(255,255,255,.45); --hair:rgba(255,255,255,.1);
+  --green:#46d369;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Archivo',sans-serif;}
+::selection{background:var(--red);color:#fff;}
+.view{display:none;} .view.active-view{display:block;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 4vw;background:linear-gradient(180deg,rgba(0,0,0,.7),transparent 100%);
+  transition:background .35s ease;
+}
+nav.scrolled{background:#141414;box-shadow:0 2px 14px rgba(0,0,0,.5);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.04em;color:var(--red);background:none;border:none;cursor:pointer;}
+.nav-links{display:flex;gap:1.8rem;}
+.nav-links a{font-size:.85rem;color:var(--grey-1);text-decoration:none;cursor:pointer;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;font-weight:600;}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:none;cursor:pointer;}
+.hamburger span{display:block;width:20px;height:2px;background:#fff;transition:.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px);}
+.mobile-drawer{
+  position:fixed;inset:0;z-index:300;background:rgba(10,10,10,.98);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
+  transform:translateY(-100%);transition:transform .4s cubic-bezier(.77,0,.18,1);
+}
+.mobile-drawer.open{transform:translateY(0);}
+.mobile-drawer a{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;color:#fff;text-decoration:none;cursor:pointer;}
+.mobile-drawer a:hover{color:var(--red);}
+
+/* HERO */
+.hero{
+  position:relative;min-height:88vh;display:flex;align-items:flex-end;
+  overflow:hidden;padding:0 4vw 3.5rem;
+}
+.hero-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center 10%;
+  filter:brightness(.85) saturate(1.05);transform:scale(1.02);
+  background-color:#0b0b0b;
+}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(20,20,20,.1) 0%,rgba(20,20,20,0) 30%,rgba(20,20,20,.4) 70%,var(--bg) 100%),
+    linear-gradient(90deg,rgba(20,20,20,.6) 0%,rgba(20,20,20,.15) 45%,rgba(20,20,20,.02) 70%);
+}
+.hero-content{position:relative;z-index:2;max-width:640px;}
+.eyebrow-row{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;font-size:.78rem;color:var(--grey-2);margin-bottom:.9rem;}
+.eyebrow-row .badge{border:1px solid var(--grey-2);padding:.1rem .5rem;font-size:.68rem;border-radius:2px;color:var(--grey-1);}
+h1.title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,7vw,5rem);line-height:.92;letter-spacing:.005em;margin-bottom:1.1rem;text-shadow:0 4px 24px rgba(0,0,0,.5);}
+h1.title .r{color:var(--red);}
+.match{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;}
+.match-pct{color:var(--green);font-weight:700;font-size:1rem;}
+.match-label{font-size:.75rem;color:var(--grey-2);}
+.meta-row{display:flex;flex-wrap:wrap;gap:.9rem;font-size:.85rem;color:var(--grey-1);margin-bottom:1.4rem;}
+.meta-row span{display:flex;align-items:center;gap:.4rem;}
+.synopsis{font-size:1.02rem;line-height:1.7;color:var(--grey-1);max-width:600px;margin-bottom:1.5rem;}
+.synopsis strong{color:#fff;}
+.action-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.3rem;}
+.btn-play{display:inline-flex;align-items:center;gap:.6rem;background:var(--white);color:#000;font-weight:700;font-size:1.05rem;padding:.75rem 1.9rem;border:none;border-radius:4px;cursor:pointer;transition:background .2s;}
+.btn-play:hover{background:rgba(255,255,255,.75);}
+.btn-round{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--grey-2);background:rgba(42,42,42,.6);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,transform .2s;}
+.btn-round:hover{border-color:#fff;transform:scale(1.06);}
+.cast-line{font-size:.85rem;color:var(--grey-2);margin-bottom:.35rem;}
+.cast-line b{color:var(--grey-1);font-weight:500;}
+
+/* HIGHLIGHT REEL */
+.info-col{padding:2.6rem 0 1rem;max-width:1300px;margin:0 auto;}
+.highlights{border-top:1px solid var(--hair);}
+.hl-header{display:flex;align-items:center;justify-content:space-between;padding:1.6rem 4vw 1rem;}
+.hl-header h2{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em;}
+.hl-header span{font-size:.72rem;color:var(--grey-2);}
+.hl-rail{
+  display:flex;gap:1rem;overflow-x:auto;scroll-behavior:smooth;
+  padding:.4rem 4vw 1.6rem;scrollbar-width:none;
+}
+.hl-rail::-webkit-scrollbar{display:none;}
+.hl-card{
+  flex:0 0 auto;width:260px;border-radius:8px;overflow:hidden;cursor:pointer;
+  background:var(--panel);border:1px solid var(--hair);
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.hl-card:hover{transform:translateY(-8px);box-shadow:0 20px 45px rgba(0,0,0,.55);border-color:var(--red);}
+.hl-thumb{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#050505;}
+.hl-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block;}
+.hl-card:hover .hl-thumb img{transform:scale(1.06);}
+.hl-thumb .hl-num{position:absolute;top:.5rem;left:.5rem;font-family:'Bebas Neue',sans-serif;font-size:.85rem;background:rgba(0,0,0,.55);padding:.1rem .5rem;border-radius:3px;color:var(--grey-1);}
+.hl-body{padding:.9rem 1rem 1.1rem;}
+.hl-body h3{font-size:.92rem;margin-bottom:.3rem;}
+.hl-body p{font-size:.78rem;color:var(--grey-2);line-height:1.5;}
+
+/* SHELF */
+.shelf{padding:1rem 4vw 1rem;max-width:1300px;margin:0 auto;}
+.shelf h2{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.03em;margin-bottom:1.2rem;}
+.shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;}
+.tile{
+  position:relative;border-radius:8px;overflow:hidden;cursor:pointer;
+  border:1px solid var(--hair);background:linear-gradient(150deg,#222,#050505);
+  display:flex;align-items:flex-end;transition:transform .3s,box-shadow .3s;
+  aspect-ratio:2/3;height:auto;
+}
+.tile:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:transform .4s;}
+.tile:hover img{transform:scale(1.06);}
+.tile::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 60%);}
+.tile-body{position:relative;z-index:2;padding:1.2rem 1.4rem;}
+.tile-kicker{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.4rem;}
+.tile-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.02em;}
+.tile-sub{font-size:.8rem;color:var(--grey-1);margin-top:.3rem;}
+
+/* STATS STRIP */
+.strip{display:flex;flex-wrap:wrap;gap:2rem 3rem;justify-content:center;padding:3rem 4vw;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:2rem;}
+.stat{text-align:center;}
+.stat b{display:block;font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--red);line-height:1;}
+.stat span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-2);}
+
+/* COVER HEADER */
+.cover{padding:7rem 4vw 2rem;max-width:1400px;margin:0 auto;}
+.cover-eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;}
+.cover-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5.5vw,4rem);letter-spacing:.02em;line-height:.95;}
+.cover-title span{color:var(--red);}
+.cover-sub{color:var(--grey-2);font-size:.9rem;margin-top:.6rem;max-width:620px;}
+
+/* ROWS */
+.rows-section{padding:0 0 5rem;max-width:1500px;margin:0 auto;}
+.row-block{margin-bottom:2.6rem;}
+.row-head{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.8rem;padding:0 4vw;}
+.row-head h3{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.04em;font-weight:400;text-transform:uppercase;color:#e8e8e8;}
+.row-head span{font-size:.72rem;color:var(--grey-2);}
+
+.rail-wrap{position:relative;}
+.rail{
+  display:flex;gap:.5rem;overflow-x:auto;scroll-behavior:smooth;
+  padding:.4rem 4vw 1rem;scrollbar-width:none;
+}
+.rail::-webkit-scrollbar{display:none;}
+.rail-arrow{
+  position:absolute;top:0;bottom:1rem;width:52px;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(90deg,rgba(20,20,20,.85),transparent);
+  border:none;color:#fff;font-size:1.4rem;cursor:pointer;opacity:0;
+  transition:opacity .2s;
+}
+.rail-wrap:hover .rail-arrow{opacity:1;}
+.rail-arrow.right{right:0;background:linear-gradient(270deg,rgba(20,20,20,.85),transparent);}
+.rail-arrow.left{left:0;}
+
+.rcard{
+  flex:0 0 auto;position:relative;border-radius:4px;overflow:hidden;background:var(--panel);
+  cursor:pointer;height:320px;width:220px;max-width:420px;
+  opacity:0;transform:translateY(16px) scale(1);
+  transition:opacity .5s,transform .28s ease,z-index 0s;
+}
+.rcard.visible{opacity:1;transform:translateY(0) scale(1);}
+.rcard img{height:100%;width:100%;object-fit:cover;background:#000;display:block;}
+.rcard .num-badge{position:absolute;top:.5rem;left:.5rem;font-family:'Bebas Neue',sans-serif;font-size:.85rem;background:rgba(0,0,0,.55);padding:.1rem .5rem;border-radius:3px;color:var(--grey-1);z-index:3;}
+.rcard .play-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background .2s;opacity:0;z-index:2;}
+.rcard .card-info{
+  position:absolute;left:0;right:0;bottom:0;padding:.6rem .7rem .55rem;
+  background:linear-gradient(0deg,rgba(0,0,0,.95) 20%,rgba(0,0,0,.6) 70%,transparent);
+  opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;z-index:2;
+}
+.rcard .card-info .ci-label{font-size:.68rem;color:var(--grey-1);letter-spacing:.02em;display:flex;align-items:center;gap:.35rem;}
+.rcard .card-info .ci-label i{color:var(--red);font-size:.75rem;}
+.rcard:hover{
+  transform:translateY(-14px) scale(1.12);
+  box-shadow:0 24px 55px rgba(0,0,0,.65);
+  z-index:5;border-radius:6px;
+}
+.rcard:hover .play-ov{opacity:1;background:rgba(0,0,0,.15);}
+.rcard:hover .card-info{opacity:1;transform:translateY(0);}
+.rcard .play-ov i{font-size:1.6rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+
+/* VIDEO CARDS (Videos page rail) */
+.rcard.video-card .play-ov{opacity:1;background:rgba(0,0,0,.18);}
+.rcard.video-card .play-ov i{font-size:2.1rem;}
+.rcard.video-card video{height:100%;width:100%;object-fit:cover;background:#000;display:block;pointer-events:none;}
+.rcard.video-card.active{outline:2px solid var(--red);outline-offset:-2px;}
+
+/* ============ VIDEOS PAGE (big single featured video + rail) ============ */
+.video-hero{
+  position:relative;max-width:1500px;margin:0 auto;padding:0 4vw 2.5rem;
+  scroll-margin-top:80px;
+}
+.video-hero-frame{
+  position:relative;width:100%;border-radius:10px;overflow:hidden;
+  background:#000;border:1px solid var(--hair);
+  box-shadow:0 30px 70px rgba(0,0,0,.55);
+  aspect-ratio:16/9;
+}
+.video-hero-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
+.video-hero-meta{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  margin-top:1.1rem;
+}
+.video-hero-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em;}
+.video-hero-sub{font-size:.8rem;color:var(--grey-2);margin-top:.25rem;}
+.video-hero-count{font-size:.72rem;color:var(--grey-2);letter-spacing:.08em;text-transform:uppercase;}
+
+.video-rows{padding:0 0 5rem;max-width:1500px;margin:0 auto;}
+
+@media(max-width:900px){
+  .video-hero-frame{aspect-ratio:9/13;}
+}
+
+/* ============ SINGLE BIG VIDEO PAGE (one immersive full video, no rail) ============ */
+.bigvideo-wrap{
+  max-width:1600px;margin:0 auto;padding:0 4vw 4rem;
+}
+.bigvideo-frame{
+  position:relative;width:100%;border-radius:12px;overflow:hidden;
+  background:#000;border:1px solid var(--hair);
+  box-shadow:0 40px 90px rgba(0,0,0,.6);
+  aspect-ratio:16/9;
+}
+.bigvideo-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
+.bigvideo-caption{
+  margin-top:1.4rem;max-width:760px;
+}
+.bigvideo-caption h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.03em;margin-bottom:.5rem;}
+.bigvideo-caption p{font-size:.92rem;color:var(--grey-1);line-height:1.7;}
+
+@media(max-width:900px){
+  .bigvideo-frame{aspect-ratio:9/13;}
+}
+
+/* MALAYSIA (single item) */
+.my-wrap{max-width:900px;margin:0 auto;padding:0 4vw 4rem;}
+.my-frame{
+  border-radius:12px;overflow:hidden;background:#000;
+  border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);
+  cursor:pointer;transition:transform .3s,border-color .3s;
+}
+.my-frame:hover{transform:translateY(-6px);border-color:var(--red);}
+.my-frame img,.my-frame video{width:100%;max-height:78vh;object-fit:contain;display:block;}
+.my-caption{margin-top:1.2rem;}
+.my-caption h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;}
+.my-caption p{font-size:.9rem;color:var(--grey-1);margin-top:.3rem;}
+
+/* GRADUATION / FATIMA (1 video + photos) */
+.grad-wrap{max-width:1200px;margin:0 auto;padding:0 4vw 4rem;}
+.grad-video-frame{
+  width:100%;border-radius:12px;overflow:hidden;background:#000;
+  border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);aspect-ratio:16/9;
+}
+.grad-video-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
+.grad-caption{margin:1.2rem 0 2rem;}
+.grad-caption h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;}
+.grad-caption p{font-size:.9rem;color:var(--grey-1);margin-top:.3rem;}
+.grad-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.grad-photo{
+  position:relative;border-radius:8px;overflow:hidden;cursor:pointer;background:#050505;
+  border:1px solid var(--hair);aspect-ratio:2/3;transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.grad-photo:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
+.grad-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.grad-photo:hover img{transform:scale(1.05);}
+.fatima-grid{grid-template-columns:repeat(3,1fr);}
+.fatima-grid .grad-photo{aspect-ratio:3/4;}
+@media(max-width:900px){
+  .grad-video-frame{aspect-ratio:9/13;}
+  .grad-grid,.fatima-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* LIGHTBOXES */
+.lightbox{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
+.lightbox.active{opacity:1;visibility:visible;}
+.lightbox-img{max-width:min(90vw,1050px);max-height:86vh;object-fit:contain;border-radius:6px;}
+.lightbox-video{max-width:min(90vw,1050px);max-height:86vh;border-radius:6px;background:#000;}
+.lb-close,.lb-nav{background:rgba(255,255,255,.08);border:1px solid var(--hair);color:var(--grey-1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;border-radius:50%;}
+.lb-close{position:fixed;top:1.4rem;right:1.4rem;width:44px;height:44px;font-size:1.05rem;}
+.lb-close:hover{color:#fff;border-color:var(--red);}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:1.05rem;}
+.lb-nav:hover{background:var(--red);border-color:var(--red);color:#fff;}
+.lb-prev{left:1.4rem;} .lb-next{right:1.4rem;}
+.lb-counter{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.1em;color:var(--grey-2);}
+
+footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;}
+.footer-brand span{color:var(--red);}
+.footer-sub{font-size:.72rem;letter-spacing:.1em;color:var(--grey-2);text-transform:uppercase;}
+
+.player{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;
+  background:rgba(20,20,20,.95);border:1px solid var(--hair);border-left:3px solid var(--red);
+  display:flex;align-items:center;gap:.8rem;padding:.6rem 1.2rem;border-radius:4px;
+  opacity:0;animation:slideUp .6s .4s forwards;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.player-btn{background:none;border:none;color:var(--red);font-size:1rem;cursor:pointer;transition:transform .2s;padding:0;line-height:1;}
+.player-btn:hover{transform:scale(1.2);}
+.player-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-2);}
+.player-bars{display:flex;align-items:center;gap:2px;height:12px;}
+.player-bars span{width:2px;background:var(--red);border-radius:1px;height:4px;transition:height .2s;}
+.player.playing .player-bars span{animation:barBounce .9s ease-in-out infinite;}
+.player-bars span:nth-child(1){animation-delay:0s;}
+.player-bars span:nth-child(2){animation-delay:.15s;}
+.player-bars span:nth-child(3){animation-delay:.3s;}
+@keyframes barBounce{0%,100%{height:4px;}50%{height:12px;}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero{min-height:70vh;padding:0 1.2rem 2.4rem;}
+  .info-col,.shelf,.strip,.cover,.rows-section,.video-hero,.video-rows,.grad-wrap{padding-left:1.2rem;padding-right:1.2rem;}
+  .row-head{padding:0;}
+  .rail{padding-left:0;padding-right:0;}
+  .rcard{height:220px;width:160px;}
+  .rcard:hover{transform:translateY(-8px) scale(1.08);}
+  .shelf-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+  footer{padding:1.6rem 1.2rem;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <button class="logo" data-nav="home">RAMANPREET SINGH</button>
+  <div class="nav-links">
+    <a data-nav="home" class="active">Home</a>
+    <a data-nav="photos">Photos</a>
+    <a data-nav="videos">Videos</a>
+    <a data-nav="graduation">Graduation</a>
+    <a data-nav="bigvideo">Feature</a>
+    <a data-nav="fatima">Fatima &amp; Me</a>
+    <a data-nav="malaysia">Malaysia</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a data-nav="home">Home</a>
+  <a data-nav="photos">Photos</a>
+  <a data-nav="videos">Videos</a>
+  <a data-nav="graduation">Graduation</a>
+  <a data-nav="bigvideo">Feature</a>
+  <a data-nav="fatima">Fatima &amp; Me</a>
+  <a data-nav="malaysia">Malaysia</a>
+</div>
+
+<!-- ============ HOME VIEW ============ -->
+<div class="view active-view" id="view-home">
+  <section class="hero">
+    <div class="hero-bg" style="background-image:url('IMG_0340.JPG')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row">
+        <span class="badge">2024 ~ 2026</span>
+        <span>Ongoing Series</span>
+      </div>
+      <h1 class="title">RAMANPREET <span class="r">SINGH</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">A journey worth rewatching</span></div>
+      <div class="meta-row">
+        <span><i class="bi bi-star-fill" style="color:#e5b711"></i> The Journey So Far</span>
+        <span><i class="bi bi-hd"></i> HD</span>
+      </div>
+      <p class="synopsis">Every great story begins with a single decision. This is the story of the moments, the memories, and the milestones — collected, one chapter at a time.</p>
+      <div class="action-row">
+        <button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button>
+        <button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> Watch Videos</button>
+        <button class="btn-play" data-nav="bigvideo"><i class="bi bi-play-fill"></i> Play Feature</button>
+      </div>
+      <p class="cast-line"><b>Starring:</b> Raman</p>
+      <p class="cast-line"><b>Genres:</b> Coming-of-age, Feel-good</p>
+    </div>
+  </section>
+
+  <div class="info-col">
+    <div class="highlights">
+      <div class="hl-header"><h2>Highlights</h2><span>Season 1</span></div>
+      <div class="hl-rail" id="hlRail"></div>
+    </div>
+  </div>
+
+  <section class="shelf">
+    <h2>On the shelf</h2>
+    <div class="shelf-grid">
+      <div class="tile" data-nav="photos">
+        <img src="IMG_0219.JPG" alt="Photos">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 01 · Photo Gallery</div>
+          <div class="tile-title">Photos</div>
+          <div class="tile-sub">Every moment, captured</div>
+        </div>
+      </div>
+      <div class="tile" data-nav="videos">
+        <img src="IMG_0451.PNG" alt="Videos">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 02 · Motion Picture</div>
+          <div class="tile-title">Videos</div>
+          <div class="tile-sub">Moments that move</div>
+        </div>
+      </div>
+      <div class="tile" data-nav="graduation">
+        <img src="BEFORE%20GRAD.JPG" alt="Graduation" onerror="this.style.display='none'">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 03 · The Big Day</div>
+          <div class="tile-title">Graduation</div>
+          <div class="tile-sub">April 2026</div>
+        </div>
+      </div>
+      <div class="tile" data-nav="bigvideo">
+        <img src="Screenshot%202025-10-24%20at%208.20.03%E2%80%AFPM.png" alt="Feature" onerror="this.style.display='none'">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 04 · The Feature</div>
+          <div class="tile-title">Watch</div>
+          <div class="tile-sub">One story, full screen</div>
+        </div>
+      </div>
+      <div class="tile" data-nav="fatima">
+        <img src="IMG_0218.JPG" alt="Fatima &amp; Me" onerror="this.style.display='none'">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 05 · Fatima &amp; Me</div>
+          <div class="tile-title">Fatima &amp; Me</div>
+          <div class="tile-sub">September 2026</div>
+        </div>
+      </div>
+      <div class="tile" data-nav="malaysia">
+        <img src="IMG_0340.JPG" alt="Malaysia" onerror="this.style.display='none'">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 06 · Travel</div>
+          <div class="tile-title">Malaysia</div>
+          <div class="tile-sub">One trip, one frame</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="stat"><b>—</b><span>Memories archived</span></div>
+    <div class="stat"><b>2024–2026</b><span>Years covered</span></div>
+    <div class="stat"><b>∞</b><span>Still going</span></div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ The Chronicle · Front Page ✦</div>
+  </footer>
+</div><!-- /view-home -->
+
+<!-- ============ PHOTOS VIEW ============ -->
+<div class="view" id="view-photos">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 01 · 2024–2026 ✦</p>
+    <h1 class="cover-title">Photo <span>Gallery</span></h1>
+    <p class="cover-sub">Every small moment somehow becomes a memory worth keeping.</p>
+  </section>
+  <section class="rows-section" id="rows-photos"></section>
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 01 · Photos ✦</div>
+  </footer>
+</div>
+
+<!-- ============ VIDEOS VIEW ============ -->
+<div class="view" id="view-videos">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 02 · Now Playing ✦</p>
+    <h1 class="cover-title">Video <span>Collection</span></h1>
+    <p class="cover-sub">The moments that were too good to just be photos. Press play.</p>
+  </section>
+
+  <section class="video-hero">
+    <div class="video-hero-frame">
+      <video id="mainVideoPlayer" controls playsinline preload="metadata"></video>
+    </div>
+    <div class="video-hero-meta">
+      <div>
+        <div class="video-hero-title" id="mainVideoTitle">Featured</div>
+        <div class="video-hero-sub" id="mainVideoSub">Tap any thumbnail below to play it here</div>
+      </div>
+      <div class="video-hero-count" id="mainVideoCount"></div>
+    </div>
+  </section>
+
+  <section class="video-rows" id="rows-videos"></section>
+
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 02 · Videos ✦</div>
+  </footer>
+</div>
+
+<!-- ============ GRADUATION VIEW ============ -->
+<div class="view" id="view-graduation">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 03 · The Big Day ✦</p>
+    <h1 class="cover-title">Grad<span>uation</span></h1>
+    <p class="cover-sub">April 2026. Everything led to this.</p>
+  </section>
+  <section class="grad-wrap">
+    <div class="grad-video-frame">
+      <video id="gradVideoPlayer" controls playsinline preload="metadata"></video>
+    </div>
+    <div class="grad-caption">
+      <h2>Graduation Day</h2>
+      <p>April 2026</p>
+    </div>
+    <div class="grad-grid" id="gradGrid"></div>
+  </section>
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 03 · Graduation ✦</div>
+  </footer>
+</div>
+
+<!-- ============ BIG SINGLE VIDEO VIEW ============ -->
+<div class="view" id="view-bigvideo">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 04 · The Feature ✦</p>
+    <h1 class="cover-title">The <span>Feature</span></h1>
+    <p class="cover-sub">One video, full screen, no distractions.</p>
+  </section>
+
+  <section class="bigvideo-wrap">
+    <div class="bigvideo-frame">
+      <video id="bigVideoPlayer" controls playsinline preload="metadata"
+             poster="assets/feature-poster.jpg">
+        <source src="2024-2026.m4v" type="video/mp4">
+      </video>
+    </div>
+    <div class="bigvideo-caption">
+      <h2>The Feature</h2>
+      <p>The moment that says it all — no captions needed, just watch.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 04 · Feature ✦</div>
+  </footer>
+</div>
+
+<!-- ============ FATIMA & ME VIEW ============ -->
+<div class="view" id="view-fatima">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 05 · Fatima &amp; Me ✦</p>
+    <h1 class="cover-title">Fatima <span>&amp; Me</span></h1>
+    <p class="cover-sub">September 2026. Some chapters are better shared.</p>
+  </section>
+  <section class="grad-wrap">
+    <div class="grad-video-frame">
+      <video id="fatimaVideoPlayer" controls playsinline preload="metadata"></video>
+    </div>
+    <div class="grad-caption"><h2>Fatima &amp; Me</h2><p>September 2026</p></div>
+    <div class="grad-grid fatima-grid" id="fatimaGrid"></div>
+  </section>
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 05 · Fatima &amp; Me ✦</div>
+  </footer>
+</div>
+
+<!-- ============ MALAYSIA VIEW ============ -->
+<div class="view" id="view-malaysia">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 06 · Travel ✦</p>
+    <h1 class="cover-title">Mala<span>ysia</span></h1>
+    <p class="cover-sub">One trip, one frame.</p>
+  </section>
+  <section class="my-wrap">
+    <div class="my-frame" id="myFrame"></div>
+    <div class="my-caption">
+      <h2 id="myTitle"></h2>
+      <p id="myCap"></p>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 06 · Malaysia ✦</div>
+  </footer>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose"><i class="bi bi-x-lg"></i></button>
+  <button class="lb-nav lb-prev" id="lbPrev"><i class="bi bi-chevron-left"></i></button>
+  <img class="lightbox-img" id="lbImg" alt="">
+  <video class="lightbox-video" id="lbVideo" controls playsinline style="display:none;"></video>
+  <button class="lb-nav lb-next" id="lbNext"><i class="bi bi-chevron-right"></i></button>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<div class="player" id="player">
+  <button class="player-btn" id="playBtn"><i class="bi bi-play-fill" id="playIcon"></i></button>
+  <span class="player-label">Theme</span>
+  <div class="player-bars"><span></span><span></span><span></span></div>
+  <audio id="bgAudio" loop><source src="theme.m4a" type="audio/mp4"></audio>
+</div>
+
+<script>
+/* ── SCROLL-AWARE NAV ── */
+const mainNav=document.getElementById('mainNav');
+function onScroll(){ mainNav.classList.toggle('scrolled', window.scrollY>40); }
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ── VIEW SWITCHING ── */
+const viewNames=['home','photos','videos','graduation','bigvideo','fatima','malaysia'];
+const views={}; viewNames.forEach(n=>views[n]=document.getElementById('view-'+n));
+let inited={};
+
+const hamburger=document.getElementById('hamburger'), mobileDrawer=document.getElementById('mobileDrawer');
+
+const cardObserver=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'), i*35); cardObserver.unobserve(e.target); } });
+},{threshold:.08});
+
+function goTo(name){
+  if(!views[name])return;
+  viewNames.forEach(n=>views[n].classList.toggle('active-view',n===name));
+  document.querySelectorAll('.nav-links a, .mobile-drawer a').forEach(a=>a.classList.toggle('active',a.dataset.nav===name));
+  window.scrollTo({top:0,behavior:'auto'});
+  mobileDrawer.classList.remove('open'); hamburger.classList.remove('open');
+  if(!inited[name]){ inited[name]=true; initView(name); }
+  requestAnimationFrame(()=>{
+    document.querySelectorAll(`#view-${name} .rcard:not(.visible)`).forEach(el=>cardObserver.observe(el));
+  });
+  if(name!=='videos'){
+    const mp=document.getElementById('mainVideoPlayer');
+    if(mp) mp.pause();
+  }
+  if(name!=='graduation'){
+    const gv=document.getElementById('gradVideoPlayer');
+    if(gv) gv.pause();
+  }
+  if(name!=='bigvideo'){
+    const bv=document.getElementById('bigVideoPlayer');
+    if(bv) bv.pause();
+  }
+  if(name!=='fatima'){
+    const fv=document.getElementById('fatimaVideoPlayer');
+    if(fv) fv.pause();
+  }
+  if(name!=='malaysia'){
+    const mv=document.querySelector('#myFrame video');
+    if(mv) mv.pause();
+  }
+}
+document.querySelectorAll('[data-nav]').forEach(el=>{
+  el.addEventListener('click', e=>{ e.preventDefault(); goTo(el.dataset.nav); });
+});
+
+hamburger.addEventListener('click', ()=>{
+  const open=hamburger.classList.toggle('open');
+  mobileDrawer.classList.toggle('open', open);
+});
+
+/* ── HIGHLIGHT REEL (home page) — edit these to Raman's real captions ── */
+const HIGHLIGHTS = [
+  {src:"highlight-1.jpg", title:"The Beginning", desc:"Every journey starts with one brave decision."},
+  {src:"highlight-2.jpg", title:"Early Days", desc:"New places, unfamiliar faces, and countless firsts."},
+  {src:"highlight-3.jpg", title:"Finding His People", desc:"Some moments happen when you least expect them."},
+  {src:"highlight-4.jpg", title:"The Journey Continues", desc:"This story is still being written."},
+];
+
+function buildHighlights(){
+  const rail=document.getElementById('hlRail');
+  if(!rail) return;
+  rail.innerHTML='';
+  HIGHLIGHTS.forEach((h,idx)=>{
+    const card=document.createElement('div'); card.className='hl-card';
+    card.innerHTML=`<div class="hl-thumb"><span class="hl-num">${idx+1}</span><img src="${h.src}" alt="${h.title}" loading="lazy" onerror="this.closest('.hl-card').style.display='none'"></div><div class="hl-body"><h3>${h.title}</h3><p>${h.desc}</p></div>`;
+    card.addEventListener('click', ()=>openPhotoLb(HIGHLIGHTS, idx));
+    rail.appendChild(card);
+  });
+}
+document.addEventListener('DOMContentLoaded', buildHighlights);
+
+/* ── PHOTOS DATA (grouped by date, becomes Netflix rows) ── */
+const PHOTO_GROUPS = [
+  { label:"October 2024", items:[
+    {src:"Screenshot 2025-10-24 at 8.20.03 PM.png"},
+    {src:"smile.PNG"},
+    {src:"FE684D7A-9632-43C9-BD3D-1A45694C96D8-19316-000002E1E0D41067.JPG"},
+    {src:"CB1F2FEF-4596-4A3B-839C-79C779C238D8-19316-000002E149378C4E.JPG"},
+    {src:"D1A2205D-5BE2-429B-82ED-33CE1E342AF7-19316-000002E188E55227.JPG"},
+  ]},
+  { label:"DJ 2025", items:[
+    {src:"DJ_044.jpg"},
+  ]},
+  { label:"HOLI 2025", items:[
+    {src:"IMG_0451.PNG"},
+    {src:"HOLI SNAP_007.jpg"},
+  ]},
+  { label:"PRESENTATION 2025", items:[
+    {src:"Screen Shot 2025-05-08 at 2.00.42 AM.png"},
+    {src:"44742226e3f640dab1c1532699378662_139.jpg"},
+  ]},
+  { label:"MSB 2025", items:[
+    {src:"IMG_0761_001.jpg"},
+    {src:"IMG_0761_005.jpg"},
+    {src:"IMG_0761_084.jpg"},
+    {src:"IMG_0756 2.jpg"},
+  ]},
+  { label:"COFFEE AND RANDOM 2025", items:[
+    {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_011.jpg"},
+    {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_022.jpg"},
+    {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_055.jpg"},
+    {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_088.jpg"},
+  ]},
+  { label:"Graduation ~ April 2026", items:[
+    {src:"GRAD 1 .jpg"},
+    {src:"GRAD 2 .jpg"},
+  ]},
+  { label:"Fatima & Me ~ Sep 2026", items:[
+    {src:"IMG_0218.JPG"},
+    {src:"F7A1A4A9-5174-4264-B297-143A17DB764E-21598-000002436E6537A3.JPG"},
+    {src:"WhatsApp Image 2026-09-28 at 23.46.12.jpeg"},
+    {src:"IMG_0218 2.jpg"},
+    {src:"D26F9D00-6F4C-412F-9A83-9E5F0A04B21D-21598-00000243B7664613.JPG"},
+    {src:"1C0D6121-B816-4CFE-A28D-5EFB68388D81-21598-00000243C2481CA2.JPG"},
+  ]},
+  { label:"Malaysia ~ Sep 2026", items:[
+    {src:"IMG_0340.JPG"},
+  ]},
+];
+
+function attachRailArrows(wrap){
+  const rail=wrap.querySelector('.rail');
+  const leftBtn=wrap.querySelector('.rail-arrow.left');
+  const rightBtn=wrap.querySelector('.rail-arrow.right');
+  const scrollAmt=()=>rail.clientWidth*0.85;
+  leftBtn.addEventListener('click', ()=>rail.scrollBy({left:-scrollAmt(),behavior:'smooth'}));
+  rightBtn.addEventListener('click', ()=>rail.scrollBy({left:scrollAmt(),behavior:'smooth'}));
+}
+
+function buildPhotoRows(){
+  const container=document.getElementById('rows-photos');
+  container.innerHTML='';
+  let allItems=[]; let globalIdx=0;
+  PHOTO_GROUPS.forEach(group=>{
+    const block=document.createElement('div'); block.className='row-block';
+    block.innerHTML=`<div class="row-head"><h3>${group.label}</h3><span>${group.items.length} photos</span></div>
+      <div class="rail-wrap">
+        <button class="rail-arrow left"><i class="bi bi-chevron-left"></i></button>
+        <div class="rail"></div>
+        <button class="rail-arrow right"><i class="bi bi-chevron-right"></i></button>
+      </div>`;
+    const rail=block.querySelector('.rail');
+    group.items.forEach(item=>{
+      const idx=globalIdx++; allItems.push(item);
+      const card=document.createElement('div'); card.className='rcard';
+      card.innerHTML=`<img src="${item.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
+      card.addEventListener('click',()=>openPhotoLb(allItems, idx));
+      rail.appendChild(card);
+    });
+    container.appendChild(block);
+    attachRailArrows(block.querySelector('.rail-wrap'));
+  });
+  return allItems;
+}
+
+let photoItemsFlat=[];
+
+/* ── VIDEOS DATA ── */
+const VIDEO_GROUPS = [
+  { label:"October 2024", items:[
+    {src:"IMG_2697.MOV", cap:"Oct 2024"},
+    {src:"IMG_1262.MP4", cap:"Oct 2024"},
+    {src:"IMG_1263.MP4", cap:"Oct 2024"},
+    {src:"boys%20.mov", cap:"Oct 2024"}
+  ]},
+  { label:"DJ", items:[
+    {src:"DJ.MP4", cap:"Feb 2025"}
+  ]},
+  { label:"Holi 2025", items:[
+    {src:"Waikato%20Students%E2%80%99%20Union%20%20Colors,%20chaos,%20and%20pure%20j.MOV", cap:"April 2025"},
+    {src:"HOLI%20SNAP.MOV", cap:"April 2025"},
+    {src:"IMG_7884.mov", cap:"April 2025"},
+    {src:"IMG_785.mov", cap:"April 2025"}
+  ]},
+  { label:"Presentation 2025", items:[
+    {src:"44742226e3f640dab1c1532699378662.MOV", cap:"May 2025"},
+    {src:"sleeping%20snap.mp4", cap:"May 2025"}
+  ]},
+  { label:"MSB Study 2025", items:[
+    {src:"IMG_0754.MOV", cap:"June 2025"},
+    {src:"IMG_0755.MOV", cap:"June 2025"},
+    {src:"IMG_0761.MOV", cap:"June 2025"},
+    {src:"IMG_0760.MOV", cap:"June 2025"}
+  ]},
+  { label:"Fifa in the Pa 2025", items:[
+    {src:"IMG_1330.MOV", cap:"June 2025"}
+  ]},
+  { label:"Coffee Room 2025", items:[
+    {src:"CB661AFA-86D7-48CC-B218-C082EAD7241B.MP4", cap:"Aug 2025"}
+  ]},
+  { label:"G Block 2025", items:[
+    {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"}
+  ]},
+  { label:"Grad 2026", items:[
+    {src:"GRAD%20VIDEO.mov", cap:"April 2026"}
+  ]},
+  { label:"Fatima & Me 2026", items:[
+    {src:"lastvideo.MP4", cap:"Sep 2026"}
+  ]}
+];
+
+let videoItemsFlat=[];
+let mainVideoErrorBound=false;
+
+function setMainVideo(item, idx, total, groupLabel, opts={}){
+  const {autoplay=true, scroll=true}=opts;
+  const mp=document.getElementById('mainVideoPlayer');
+  if(!mp) return;
+  mp.pause();
+  mp.src=item.src;
+  if(item.poster) mp.poster=item.poster; else mp.removeAttribute('poster');
+  mp.load();
+  if(autoplay) mp.play().catch(()=>{ /* autoplay may be blocked, that's fine */ });
+  document.getElementById('mainVideoTitle').textContent=(item.title||groupLabel||'Featured').trim();
+  document.getElementById('mainVideoSub').textContent=item.cap||item.desc||'';
+  document.getElementById('mainVideoCount').textContent=`Video ${idx+1} of ${total}`;
+  document.querySelectorAll('#rows-videos .rcard').forEach((c,i)=>c.classList.toggle('active', i===idx));
+  if(scroll) document.querySelector('.video-hero')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function buildVideoRows(){
+  const container=document.getElementById('rows-videos');
+  if(!container) return;
+  container.innerHTML='';
+
+  const allItems=[];
+  VIDEO_GROUPS.forEach(g=>g.items.forEach(it=>allItems.push({...it, group:g.label})));
+  videoItemsFlat=allItems;
+
+  const mp=document.getElementById('mainVideoPlayer');
+  if(mp && !mainVideoErrorBound){
+    mainVideoErrorBound=true;
+    mp.addEventListener('error',()=>{
+      document.getElementById('mainVideoSub').textContent=
+        "This video can't be played in this browser. Convert it to H.264 MP4.";
+    });
+  }
+
+  let globalIdx=0;
+  VIDEO_GROUPS.forEach(group=>{
+    const block=document.createElement('div'); block.className='row-block';
+    block.innerHTML=`<div class="row-head"><h3>${group.label}</h3><span>${group.items.length} videos</span></div>
+      <div class="rail-wrap">
+        <button class="rail-arrow left"><i class="bi bi-chevron-left"></i></button>
+        <div class="rail"></div>
+        <button class="rail-arrow right"><i class="bi bi-chevron-right"></i></button>
+      </div>`;
+    const rail=block.querySelector('.rail');
+    group.items.forEach(item=>{
+      const idx=globalIdx++;
+      const card=document.createElement('div'); card.className='rcard video-card';
+      card.innerHTML=`<video src="${item.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${item.cap||group.label}</span></div>`;
+      card.addEventListener('click', ()=>setMainVideo(item, idx, allItems.length, group.label));
+      rail.appendChild(card);
+    });
+    container.appendChild(block);
+    attachRailArrows(block.querySelector('.rail-wrap'));
+  });
+
+  if(allItems.length) setMainVideo(allItems[0], 0, allItems.length, allItems[0].group, {autoplay:false, scroll:false});
+}
+
+/* ── MALAYSIA (single item; set type to 'photo' or 'video') ── */
+const MALAYSIA = {
+  type:"photo",
+  src:"IMG_0340.JPG",
+  title:"Malaysia",
+  cap:"September 2026"
+};
+
+function buildMalaysia(){
+  const frame=document.getElementById('myFrame');
+  frame.innerHTML='';
+  if(MALAYSIA.type==='video'){
+    frame.style.cursor='default';
+    frame.style.transform='none';
+    frame.innerHTML=`<video src="${MALAYSIA.src}" controls playsinline preload="metadata"></video>`;
+  } else {
+    frame.innerHTML=`<img src="${MALAYSIA.src}" alt="Malaysia">`;
+    frame.addEventListener('click',()=>openPhotoLb([{src:MALAYSIA.src}],0));
+  }
+  document.getElementById('myTitle').textContent=MALAYSIA.title;
+  document.getElementById('myCap').textContent=MALAYSIA.cap;
+}
+
+/* ── GRADUATION (1 video + photos) ── */
+const GRADUATION = {
+  video:"GRAD VIDEO.mov",
+  photos:[
+    {src:"BEFORE GRAD.JPG"},
+    {src:"GRAD 1 .jpg"},
+    {src:"GRAD 2 .jpg"},
+  ]
+};
+
+function buildGraduation(){
+  const v=document.getElementById('gradVideoPlayer');
+  if(v) v.src=GRADUATION.video;
+  const grid=document.getElementById('gradGrid');
+  grid.innerHTML='';
+  GRADUATION.photos.forEach((p,i)=>{
+    const d=document.createElement('div'); d.className='grad-photo';
+    d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    d.addEventListener('click',()=>openPhotoLb(GRADUATION.photos,i));
+    grid.appendChild(d);
+  });
+}
+
+/* ── FATIMA & ME (1 video + photos) ── */
+const FATIMA = {
+  video:"lastvideo.MP4",
+  photos:[
+    {src:"IMG_0218.JPG"},
+    {src:"F7A1A4A9-5174-4264-B297-143A17DB764E-21598-000002436E6537A3.JPG"},
+    {src:"WhatsApp Image 2026-09-28 at 23.46.12.jpeg"},
+    {src:"IMG_0218 2.jpg"},
+    {src:"D26F9D00-6F4C-412F-9A83-9E5F0A04B21D-21598-00000243B7664613.JPG"},
+    {src:"1C0D6121-B816-4CFE-A28D-5EFB68388D81-21598-00000243C2481CA2.JPG"},
+  ]
+};
+
+function buildFatima(){
+  const v=document.getElementById('fatimaVideoPlayer');
+  if(v) v.src=FATIMA.video;
+  const grid=document.getElementById('fatimaGrid');
+  grid.innerHTML='';
+  FATIMA.photos.forEach((p,i)=>{
+    const d=document.createElement('div'); d.className='grad-photo';
+    d.innerHTML=`<img src="${encodeURI(p.src)}" alt="Fatima and me photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    d.addEventListener('click',()=>openPhotoLb(FATIMA.photos.map(x=>({src:encodeURI(x.src)})),i));
+    grid.appendChild(d);
+  });
+}
+
+function initView(name){
+  if(name==='photos'){
+    photoItemsFlat = buildPhotoRows();
+    document.querySelectorAll('#view-photos .rcard').forEach(el=>cardObserver.observe(el));
+  }
+  if(name==='videos'){
+    buildVideoRows();
+    document.querySelectorAll('#view-videos .rcard').forEach(el=>cardObserver.observe(el));
+  }
+  if(name==='malaysia') buildMalaysia();
+  if(name==='graduation') buildGraduation();
+  if(name==='fatima') buildFatima();
+}
+
+/* ── PHOTO / VIDEO LIGHTBOX ── */
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbVideo=document.getElementById('lbVideo'), lbCounter=document.getElementById('lbCounter');
+let lbItems=[], lbCurrent=0;
+function renderLbItem(){
+  const item=lbItems[lbCurrent];
+  if(item.type==='video'){
+    lbVideo.pause();
+    lbVideo.src=item.src;
+    lbVideo.style.display='block';
+    lbImg.style.display='none';
+    lbVideo.load();
+  } else {
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.style.display='none';
+    lbImg.style.display='block';
+    lbImg.src=item.src;
+  }
+  lbCounter.textContent=(lbCurrent+1)+' / '+lbItems.length;
+}
+function openPhotoLb(items, idx){
+  lbItems=items; lbCurrent=idx;
+  renderLbItem();
+  lb.classList.add('active');
+}
+function closePhotoLb(){ lb.classList.remove('active'); lbVideo.pause(); }
+function navPhotoLb(dir){
+  lbCurrent=(lbCurrent+dir+lbItems.length)%lbItems.length;
+  renderLbItem();
+}
+document.getElementById('lbClose').addEventListener('click', closePhotoLb);
+lb.addEventListener('click', e=>{ if(e.target===lb) closePhotoLb(); });
+document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); navPhotoLb(-1); });
+document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagation(); navPhotoLb(1); });
+let ptx=0;
+lb.addEventListener('touchstart', e=>{ ptx=e.touches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend', e=>{ const dx=e.changedTouches[0].clientX-ptx; if(Math.abs(dx)>50) navPhotoLb(dx<0?1:-1); }, {passive:true});
+
+document.addEventListener('keydown', e=>{
+  if(lb.classList.contains('active')){
+    if(e.key==='Escape') closePhotoLb();
+    if(e.key==='ArrowLeft') navPhotoLb(-1);
+    if(e.key==='ArrowRight') navPhotoLb(1);
+  }
+});
+
+inited.home=true;
+</script>
+<script>
+/* ── BACKGROUND MUSIC (Netflix-style player widget) ── */
+(function () {
+  const STORAGE_KEY = "bgAudioStateRaman";
+  function pickStore() {
+    try { localStorage.setItem("__t__","1"); localStorage.removeItem("__t__"); return localStorage; } catch(e){}
+    try { sessionStorage.setItem("__t__","1"); sessionStorage.removeItem("__t__"); return sessionStorage; } catch(e){}
+    return null;
+  }
+  const store = pickStore();
+  function readState(){ if(!store) return null; try{ const r=store.getItem(STORAGE_KEY); return r?JSON.parse(r):null; }catch(e){ return null; } }
+  function writeState(s){ if(!store) return; try{ store.setItem(STORAGE_KEY, JSON.stringify(s)); }catch(e){} }
+  function init(){
+    const audio=document.getElementById("bgAudio");
+    const playBtn=document.getElementById("playBtn");
+    const playIcon=document.getElementById("playIcon");
+    const playerEl=document.getElementById("player");
+    const label=playerEl?playerEl.querySelector(".player-label"):null;
+    const defaultLabel=label?label.textContent:"";
+    function setUI(p){ if(playIcon) playIcon.className=p?"bi bi-pause-fill":"bi bi-play-fill"; if(playerEl) playerEl.classList.toggle("playing",p); }
+    function errLabel(t){ if(label){ label.textContent=t; label.style.color="#e07b7b"; } }
+    if(audio){ audio.addEventListener("error",()=>{
+      const err=audio.error;
+      const msgs={1:"Audio load aborted",2:"Network error loading audio",3:"Audio file can't be decoded",4:"Audio file not found"};
+      errLabel(err?(msgs[err.code]||"Audio error"):"Audio error");
+    }); }
+    if(playBtn&&audio){ playBtn.addEventListener("click",()=>{
+      if(audio.paused){ audio.play().then(()=>setUI(true)).catch(()=>{ setUI(false); if(label&&label.textContent===defaultLabel) errLabel("Tap again to allow audio"); }); }
+      else { audio.pause(); setUI(false); }
+    }); }
+    if(!audio) return;
+    audio.addEventListener("play",()=>setUI(true));
+    audio.addEventListener("pause",()=>setUI(false));
+    try{
+      const saved=readState(); let resumed=false;
+      if(saved && typeof saved.time==="number"){
+        const seek=()=>{ if(audio.readyState>=1) audio.currentTime=saved.time; else audio.addEventListener("loadedmetadata",()=>{audio.currentTime=saved.time;},{once:true}); };
+        seek();
+        if(saved.playing) audio.play().then(()=>{resumed=true;}).catch(()=>{});
+      }
+      function unlock(){ if(resumed||audio.paused===false){cleanup();return;} const s=readState(); if(s&&s.playing&&audio.paused) audio.play().catch(()=>{}); cleanup(); }
+      function cleanup(){ document.removeEventListener("click",unlock); document.removeEventListener("keydown",unlock); document.removeEventListener("touchstart",unlock); }
+      document.addEventListener("click",unlock); document.addEventListener("keydown",unlock); document.addEventListener("touchstart",unlock);
+      setInterval(()=>{ writeState({time:audio.currentTime||0, playing:!audio.paused}); },1000);
+      window.addEventListener("beforeunload",()=>{ writeState({time:audio.currentTime||0, playing:!audio.paused}); });
+    }catch(e){}
+  }
+  document.addEventListener("DOMContentLoaded", init);
+})();
+</script>
+</body>
+</html>
