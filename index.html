@@ -625,8 +625,10 @@ body.locked, body.gate-open{overflow:hidden;}
    LOCK CONFIG  — change these two things if needed
    ===================================================== */
 // 11:00 PM IST (UTC+05:30) on 4 November 2026
-const UNLOCK_AT = Date.parse('2026-11-04T23:00:00+05:30');
-
+const UNLOCK_AT = location.search.includes('test')
+  ? 0
+  : Date.parse('2026-11-04T23:00:00+05:30');
+  
 // Edit the letter here
 const LETTER = {
   date: "4 November 2026",
