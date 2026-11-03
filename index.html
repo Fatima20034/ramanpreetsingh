@@ -186,13 +186,13 @@ h1.title .r{color:var(--red);}
 .rcard:hover .card-info{opacity:1;transform:translateY(0);}
 .rcard .play-ov i{font-size:1.6rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);}
 
-/* VIDEO CARDS (Videos page rail) */
+/* VIDEO CARDS */
 .rcard.video-card .play-ov{opacity:1;background:rgba(0,0,0,.18);}
 .rcard.video-card .play-ov i{font-size:2.1rem;}
 .rcard.video-card video{height:100%;width:100%;object-fit:cover;background:#000;display:block;pointer-events:none;}
 .rcard.video-card.active{outline:2px solid var(--red);outline-offset:-2px;}
 
-/* ============ VIDEOS PAGE (big single featured video + rail) ============ */
+/* VIDEOS PAGE */
 .video-hero{
   position:relative;max-width:1500px;margin:0 auto;padding:0 4vw 2.5rem;
   scroll-margin-top:80px;
@@ -211,17 +211,13 @@ h1.title .r{color:var(--red);}
 .video-hero-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em;}
 .video-hero-sub{font-size:.8rem;color:var(--grey-2);margin-top:.25rem;}
 .video-hero-count{font-size:.72rem;color:var(--grey-2);letter-spacing:.08em;text-transform:uppercase;}
-
 .video-rows{padding:0 0 5rem;max-width:1500px;margin:0 auto;}
-
 @media(max-width:900px){
   .video-hero-frame{aspect-ratio:9/13;}
 }
 
-/* ============ SINGLE BIG VIDEO PAGE (one immersive full video, no rail) ============ */
-.bigvideo-wrap{
-  max-width:1600px;margin:0 auto;padding:0 4vw 4rem;
-}
+/* FEATURE */
+.bigvideo-wrap{max-width:1600px;margin:0 auto;padding:0 4vw 4rem;}
 .bigvideo-frame{
   position:relative;width:100%;border-radius:12px;overflow:hidden;
   background:#000;border:1px solid var(--hair);
@@ -229,17 +225,14 @@ h1.title .r{color:var(--red);}
   aspect-ratio:16/9;
 }
 .bigvideo-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
-.bigvideo-caption{
-  margin-top:1.4rem;max-width:760px;
-}
+.bigvideo-caption{margin-top:1.4rem;max-width:760px;}
 .bigvideo-caption h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.03em;margin-bottom:.5rem;}
 .bigvideo-caption p{font-size:.92rem;color:var(--grey-1);line-height:1.7;}
-
 @media(max-width:900px){
   .bigvideo-frame{aspect-ratio:9/13;}
 }
 
-/* MALAYSIA (single item) */
+/* MALAYSIA */
 .my-wrap{max-width:900px;margin:0 auto;padding:0 4vw 4rem;}
 .my-frame{
   border-radius:12px;overflow:hidden;background:#000;
@@ -252,7 +245,7 @@ h1.title .r{color:var(--red);}
 .my-caption h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;}
 .my-caption p{font-size:.9rem;color:var(--grey-1);margin-top:.3rem;}
 
-/* GRADUATION / FATIMA (1 video + photos) */
+/* GRADUATION / FATIMA */
 .grad-wrap{max-width:1200px;margin:0 auto;padding:0 4vw 4rem;}
 .grad-video-frame{
   width:100%;border-radius:12px;overflow:hidden;background:#000;
@@ -268,8 +261,10 @@ h1.title .r{color:var(--red);}
   border:1px solid var(--hair);aspect-ratio:2/3;transition:transform .3s,box-shadow .3s,border-color .3s;
 }
 .grad-photo:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
-.grad-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.grad-photo img,.grad-photo video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.grad-photo video{pointer-events:none;}
 .grad-photo:hover img{transform:scale(1.05);}
+.grad-photo .vid-badge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2);font-size:2.4rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none;}
 .fatima-grid{grid-template-columns:repeat(3,1fr);}
 .fatima-grid .grad-photo{aspect-ratio:3/4;}
 @media(max-width:900px){
@@ -277,7 +272,7 @@ h1.title .r{color:var(--red);}
   .grad-grid,.fatima-grid{grid-template-columns:repeat(2,1fr);}
 }
 
-/* LIGHTBOXES */
+/* LIGHTBOX */
 .lightbox{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
 .lightbox.active{opacity:1;visibility:visible;}
 .lightbox-img{max-width:min(90vw,1050px);max-height:86vh;object-fit:contain;border-radius:6px;}
@@ -354,7 +349,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <a data-nav="malaysia">Malaysia</a>
 </div>
 
-<!-- ============ HOME VIEW ============ -->
+<!-- HOME -->
 <div class="view active-view" id="view-home">
   <section class="hero">
     <div class="hero-bg" style="background-image:url('IMG_0340.JPG')"></div>
@@ -392,7 +387,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     <h2>On the shelf</h2>
     <div class="shelf-grid">
       <div class="tile" data-nav="photos">
-        <img src="IMG_0219.JPG" alt="Photos">
+        <img src="IMG_0219.JPG" alt="Photos" onerror="this.style.display='none'">
         <div class="tile-body">
           <div class="tile-kicker">Issue 01 · Photo Gallery</div>
           <div class="tile-title">Photos</div>
@@ -400,7 +395,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
         </div>
       </div>
       <div class="tile" data-nav="videos">
-        <img src="IMG_0451.PNG" alt="Videos">
+        <img src="IMG_0451.PNG" alt="Videos" onerror="this.style.display='none'">
         <div class="tile-body">
           <div class="tile-kicker">Issue 02 · Motion Picture</div>
           <div class="tile-title">Videos</div>
@@ -452,9 +447,9 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     <div class="footer-brand">Raman<span> </span></div>
     <div class="footer-sub">✦ The Chronicle · Front Page ✦</div>
   </footer>
-</div><!-- /view-home -->
+</div>
 
-<!-- ============ PHOTOS VIEW ============ -->
+<!-- PHOTOS -->
 <div class="view" id="view-photos">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 01 · 2024–2026 ✦</p>
@@ -468,7 +463,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ VIDEOS VIEW ============ -->
+<!-- VIDEOS -->
 <div class="view" id="view-videos">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 02 · Now Playing ✦</p>
@@ -497,7 +492,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ GRADUATION VIEW ============ -->
+<!-- GRADUATION -->
 <div class="view" id="view-graduation">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 03 · The Big Day ✦</p>
@@ -520,7 +515,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ BIG SINGLE VIDEO VIEW ============ -->
+<!-- FEATURE -->
 <div class="view" id="view-bigvideo">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 04 · The Feature ✦</p>
@@ -530,8 +525,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
   <section class="bigvideo-wrap">
     <div class="bigvideo-frame">
-      <video id="bigVideoPlayer" controls playsinline preload="metadata"
-             poster="assets/feature-poster.jpg">
+      <video id="bigVideoPlayer" controls playsinline preload="metadata">
         <source src="2024-2026.m4v" type="video/mp4">
       </video>
     </div>
@@ -547,7 +541,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ FATIMA & ME VIEW ============ -->
+<!-- FATIMA -->
 <div class="view" id="view-fatima">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 05 · Fatima &amp; Me ✦</p>
@@ -567,7 +561,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ MALAYSIA VIEW ============ -->
+<!-- MALAYSIA -->
 <div class="view" id="view-malaysia">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 06 · Travel ✦</p>
@@ -631,26 +625,11 @@ function goTo(name){
   requestAnimationFrame(()=>{
     document.querySelectorAll(`#view-${name} .rcard:not(.visible)`).forEach(el=>cardObserver.observe(el));
   });
-  if(name!=='videos'){
-    const mp=document.getElementById('mainVideoPlayer');
-    if(mp) mp.pause();
-  }
-  if(name!=='graduation'){
-    const gv=document.getElementById('gradVideoPlayer');
-    if(gv) gv.pause();
-  }
-  if(name!=='bigvideo'){
-    const bv=document.getElementById('bigVideoPlayer');
-    if(bv) bv.pause();
-  }
-  if(name!=='fatima'){
-    const fv=document.getElementById('fatimaVideoPlayer');
-    if(fv) fv.pause();
-  }
-  if(name!=='malaysia'){
-    const mv=document.querySelector('#myFrame video');
-    if(mv) mv.pause();
-  }
+  if(name!=='videos'){ const mp=document.getElementById('mainVideoPlayer'); if(mp) mp.pause(); }
+  if(name!=='graduation'){ const gv=document.getElementById('gradVideoPlayer'); if(gv) gv.pause(); }
+  if(name!=='bigvideo'){ const bv=document.getElementById('bigVideoPlayer'); if(bv) bv.pause(); }
+  if(name!=='fatima'){ const fv=document.getElementById('fatimaVideoPlayer'); if(fv) fv.pause(); }
+  if(name!=='malaysia'){ const mv=document.querySelector('#myFrame video'); if(mv) mv.pause(); }
 }
 document.querySelectorAll('[data-nav]').forEach(el=>{
   el.addEventListener('click', e=>{ e.preventDefault(); goTo(el.dataset.nav); });
@@ -661,7 +640,7 @@ hamburger.addEventListener('click', ()=>{
   mobileDrawer.classList.toggle('open', open);
 });
 
-/* ── HIGHLIGHT REEL (home page) — edit these to Raman's real captions ── */
+/* ── HIGHLIGHT REEL ── */
 const HIGHLIGHTS = [
   {src:"highlight-1.jpg", title:"The Beginning", desc:"Every journey starts with one brave decision."},
   {src:"highlight-2.jpg", title:"Early Days", desc:"New places, unfamiliar faces, and countless firsts."},
@@ -682,10 +661,10 @@ function buildHighlights(){
 }
 document.addEventListener('DOMContentLoaded', buildHighlights);
 
-/* ── PHOTOS DATA (grouped by date, becomes Netflix rows) ── */
+/* ── PHOTOS DATA ── */
 const PHOTO_GROUPS = [
   { label:"October 2024", items:[
-    {src:"Screenshot 2025-10-24 at 8.20.03 PM.png"},
+    {src:"Screenshot%202025-10-24%20at%208.20.03%E2%80%AFPM.png"},
     {src:"smile.PNG"},
     {src:"FE684D7A-9632-43C9-BD3D-1A45694C96D8-19316-000002E1E0D41067.JPG"},
     {src:"CB1F2FEF-4596-4A3B-839C-79C779C238D8-19316-000002E149378C4E.JPG"},
@@ -768,7 +747,7 @@ function buildPhotoRows(){
 
 let photoItemsFlat=[];
 
-/* ── VIDEOS DATA ── */
+/* ── VIDEOS DATA (FIXED: broken syntax in the Grad / Fatima groups) ── */
 const VIDEO_GROUPS = [
   { label:"October 2024", items:[
     {src:"IMG_2697.MOV", cap:"Oct 2024"},
@@ -805,7 +784,9 @@ const VIDEO_GROUPS = [
     {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"}
   ]},
   { label:"Grad 2026", items:[
-const GRAD_VIDEOS=['GRAD%20VIDEO.mov','GRAD%20VIDEO%20(1).mp4'];
+    {src:"GRAD%20VIDEO.mov", cap:"April 2026"},
+    {src:"GRAD%20VIDEO%20(1).mp4", cap:"April 2026"}
+  ]},
   { label:"Fatima & Me 2026", items:[
     {src:"lastvideo.MP4", cap:"Sep 2026"}
   ]}
@@ -822,7 +803,7 @@ function setMainVideo(item, idx, total, groupLabel, opts={}){
   mp.src=item.src;
   if(item.poster) mp.poster=item.poster; else mp.removeAttribute('poster');
   mp.load();
-  if(autoplay) mp.play().catch(()=>{ /* autoplay may be blocked, that's fine */ });
+  if(autoplay) mp.play().catch(()=>{});
   document.getElementById('mainVideoTitle').textContent=(item.title||groupLabel||'Featured').trim();
   document.getElementById('mainVideoSub').textContent=item.cap||item.desc||'';
   document.getElementById('mainVideoCount').textContent=`Video ${idx+1} of ${total}`;
@@ -872,7 +853,7 @@ function buildVideoRows(){
   if(allItems.length) setMainVideo(allItems[0], 0, allItems.length, allItems[0].group, {autoplay:false, scroll:false});
 }
 
-/* ── MALAYSIA (single item; set type to 'photo' or 'video') ── */
+/* ── MALAYSIA ── */
 const MALAYSIA = {
   type:"photo",
   src:"IMG_0340.JPG",
@@ -895,15 +876,14 @@ function buildMalaysia(){
   document.getElementById('myCap').textContent=MALAYSIA.cap;
 }
 
-/* ── GRADUATION (1 video + photos) ── */
+/* ── GRADUATION (FIXED: video no longer shoved into the photos list as an <img>) ── */
 const GRADUATION = {
-  video:"GRAD VIDEO.mov",
+  video:"GRAD%20VIDEO.mov",
   photos:[
-    {src:"BEFORE GRAD.JPG"},
-    {src:"GRAD 1 .jpg"},
-    {src:"GRAD 2 .jpg"},
-    {src:"GRAD%20VIDEO%20(1).mp4", cap:"April 2026"}
-
+    {src:"BEFORE%20GRAD.JPG"},
+    {src:"GRAD%201%20.jpg"},
+    {src:"GRAD%202%20.jpg"},
+    {src:"GRAD%20VIDEO%20(1).mp4", type:"video", cap:"April 2026"}
   ]
 };
 
@@ -914,13 +894,17 @@ function buildGraduation(){
   grid.innerHTML='';
   GRADUATION.photos.forEach((p,i)=>{
     const d=document.createElement('div'); d.className='grad-photo';
-    d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    if(p.type==='video'){
+      d.innerHTML=`<video src="${p.src}#t=0.1" muted playsinline preload="metadata" onerror="this.closest('.grad-photo').style.display='none'"></video><div class="vid-badge"><i class="bi bi-play-circle-fill"></i></div>`;
+    } else {
+      d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    }
     d.addEventListener('click',()=>openPhotoLb(GRADUATION.photos,i));
     grid.appendChild(d);
   });
 }
 
-/* ── FATIMA & ME (1 video + photos) ── */
+/* ── FATIMA & ME ── */
 const FATIMA = {
   video:"lastvideo.MP4",
   photos:[
@@ -960,7 +944,7 @@ function initView(name){
   if(name==='fatima') buildFatima();
 }
 
-/* ── PHOTO / VIDEO LIGHTBOX ── */
+/* ── LIGHTBOX ── */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbVideo=document.getElementById('lbVideo'), lbCounter=document.getElementById('lbCounter');
 let lbItems=[], lbCurrent=0;
 function renderLbItem(){
@@ -1009,7 +993,7 @@ document.addEventListener('keydown', e=>{
 inited.home=true;
 </script>
 <script>
-/* ── BACKGROUND MUSIC (Netflix-style player widget) ── */
+/* ── BACKGROUND MUSIC ── */
 (function () {
   const STORAGE_KEY = "bgAudioStateRaman";
   function pickStore() {
