@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raman</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <style>
 :root{--bg:#141414;--panel:#181818;--panel-2:#0b0b0b;--red:#e50914;--white:#fff;--grey-1:rgba(255,255,255,.7);--grey-2:rgba(255,255,255,.45);--hair:rgba(255,255,255,.1);--green:#46d369;}
@@ -209,6 +209,59 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 .player-bars span:nth-child(3){animation-delay:.3s;}
 @keyframes barBounce{0%,100%{height:4px;}50%{height:12px;}}
 
+/* ============ LETTER PAGE ============ */
+.letter-wrap{max-width:760px;margin:0 auto;padding:0 5vw 5rem;}
+.letter-paper{position:relative;background:linear-gradient(180deg,#1b1816,#151311);border:1px solid rgba(229,9,20,.35);border-radius:10px;padding:3rem 2.6rem 2.8rem;box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 60px rgba(229,9,20,.04);}
+.letter-paper::before{content:'';position:absolute;top:0;left:2.6rem;right:2.6rem;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
+.letter-date{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-2);margin-bottom:1.6rem;}
+.letter-greet{font-family:'Caveat',cursive;font-size:2.3rem;color:#fff;margin-bottom:1.3rem;}
+.letter-body p{font-family:'Caveat',cursive;font-size:1.65rem;line-height:1.55;color:rgba(255,255,255,.86);margin-bottom:1.1rem;min-height:1.55em;}
+.letter-sign{font-family:'Caveat',cursive;font-size:1.9rem;color:var(--red);margin-top:1.6rem;min-height:1.6em;}
+.type-cursor::after{content:'|';margin-left:2px;color:var(--red);animation:blink .8s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+.letter-skip{display:inline-block;margin-top:1.4rem;background:none;border:none;color:var(--grey-2);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;font-family:inherit;}
+.letter-skip:hover{color:#fff;}
+@media(max-width:600px){.letter-paper{padding:2.2rem 1.4rem;}.letter-body p{font-size:1.4rem;}}
+
+/* ============ LOCK SCREEN ============ */
+body.locked > nav,
+body.locked > .view,
+body.locked > .mobile-drawer,
+body.locked > .player,
+body.locked > .lightbox{display:none !important;}
+body.locked, body.gate-open{overflow:hidden;}
+.lock-screen{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;overflow-y:auto;padding:2rem 1.2rem;background:radial-gradient(ellipse at 50% 20%,#2a0508 0%,#0b0b0b 60%);}
+.lock-screen.show{display:flex;}
+.lock-card{width:100%;max-width:560px;text-align:center;margin:auto;}
+.lock-icon{font-size:3.4rem;color:var(--red);margin-bottom:.6rem;filter:drop-shadow(0 0 18px rgba(229,9,20,.55));display:inline-block;}
+.lock-kicker{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-2);margin-bottom:.5rem;}
+.lock-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,8vw,3.4rem);letter-spacing:.03em;line-height:1;margin-bottom:1.4rem;}
+.lock-title span{color:var(--red);}
+.riddle{border-left:3px solid var(--red);background:rgba(255,255,255,.04);border-radius:0 8px 8px 0;padding:1.2rem 1.4rem;text-align:left;margin-bottom:1.6rem;}
+.riddle p{font-family:'Caveat',cursive;font-size:1.5rem;line-height:1.45;color:rgba(255,255,255,.9);}
+.riddle p + p{margin-top:.8rem;}
+.countdown{display:flex;justify-content:center;gap:.8rem;margin-bottom:.8rem;}
+.cd-box{min-width:74px;padding:.8rem .4rem .6rem;background:#0f0f0f;border:1px solid var(--hair);border-radius:8px;}
+.cd-box b{display:block;font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;color:#fff;}
+.cd-box span{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-2);}
+.lock-when{font-size:.78rem;color:var(--grey-2);margin-bottom:1.4rem;line-height:1.6;}
+.lock-when b{color:var(--grey-1);font-weight:600;}
+.btn-try{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:#fff;border:1.5px solid var(--grey-2);padding:.7rem 1.6rem;border-radius:4px;font-size:.95rem;font-weight:600;cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s;}
+.btn-try:hover{border-color:var(--red);background:rgba(229,9,20,.12);}
+.lock-msg{min-height:1.4rem;margin-top:1rem;font-size:.85rem;color:#ff6b6b;}
+.shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97);}
+@keyframes shake{10%,90%{transform:translateX(-2px);}20%,80%{transform:translateX(4px);}30%,50%,70%{transform:translateX(-8px);}40%,60%{transform:translateX(8px);}}
+.lock-state-unlocked{display:none;}
+.lock-screen.is-open .lock-state-locked{display:none;}
+.lock-screen.is-open .lock-state-unlocked{display:block;}
+.lock-screen.is-open .lock-icon{color:var(--green);filter:drop-shadow(0 0 18px rgba(70,211,105,.55));animation:pop .7s ease;}
+@keyframes pop{0%{transform:scale(.5) rotate(-15deg);}60%{transform:scale(1.25) rotate(8deg);}100%{transform:scale(1) rotate(0);}}
+.unlock-text{font-size:1rem;line-height:1.7;color:var(--grey-1);margin-bottom:1.6rem;}
+.unlock-actions{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:rgba(109,109,110,.4);color:#fff;font-weight:700;font-size:1.05rem;padding:.75rem 1.9rem;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:background .2s;}
+.btn-ghost:hover{background:rgba(109,109,110,.7);}
+.nav-locked-dot{display:none;}
+
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
 
 @media(max-width:900px){
@@ -222,10 +275,12 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   .rcard:hover{transform:translateY(-8px) scale(1.08);}
   .shelf-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
   footer{padding:1.6rem 1.2rem;flex-direction:column;text-align:center;}
+  .cd-box{min-width:62px;}
+  .cd-box b{font-size:2rem;}
 }
 </style>
 </head>
-<body>
+<body class="locked">
 
 <nav id="mainNav">
   <button class="logo" data-nav="home">RAMANPREET SINGH</button>
@@ -237,6 +292,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     <a data-nav="bigvideo">Feature</a>
     <a data-nav="fatima">Fatima &amp; Me</a>
     <a data-nav="malaysia">Malaysia</a>
+    <a data-nav="letter"><i class="bi bi-envelope-heart-fill" style="color:var(--red)"></i> Letter</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -248,6 +304,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <a data-nav="bigvideo">Feature</a>
   <a data-nav="fatima">Fatima &amp; Me</a>
   <a data-nav="malaysia">Malaysia</a>
+  <a data-nav="letter">Letter</a>
 </div>
 
 <!-- HOME -->
@@ -271,6 +328,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
         <button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button>
         <button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> Watch Videos</button>
         <button class="btn-play" data-nav="bigvideo"><i class="bi bi-play-fill"></i> Play Feature</button>
+        <button class="btn-play" data-nav="letter"><i class="bi bi-envelope-heart-fill"></i> Read Letter</button>
       </div>
       <p class="cast-line"><b>Starring:</b> Raman</p>
       <p class="cast-line"><b>Genres:</b> Coming-of-age, Feel-good</p>
@@ -333,6 +391,14 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
           <div class="tile-kicker">Issue 06 · Travel</div>
           <div class="tile-title">Malaysia</div>
           <div class="tile-sub">One trip, one frame</div>
+        </div>
+      </div>
+      <div class="tile" data-nav="letter">
+        <img src="IMG_0218.JPG" alt="Letter" onerror="this.style.display='none'">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 07 · Sealed</div>
+          <div class="tile-title">The Letter</div>
+          <div class="tile-sub">Written for you</div>
         </div>
       </div>
     </div>
@@ -477,6 +543,27 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
+<!-- LETTER -->
+<div class="view" id="view-letter">
+  <section class="cover" style="background-image:url('IMG_0218.JPG')">
+    <p class="cover-eyebrow">✦ Issue No. 07 · Sealed Until Now ✦</p>
+    <h1 class="cover-title">A Letter <span>For You</span></h1>
+    <p class="cover-sub">Opened somewhere above the clouds.</p>
+  </section>
+  <section class="letter-wrap">
+    <div class="letter-paper">
+      <div class="letter-date" id="letterDate">4 November 2026</div>
+      <div class="letter-greet" id="letterGreet"></div>
+      <div class="letter-body" id="letterBody"></div>
+      <div class="letter-sign" id="letterSign"></div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 07 · The Letter ✦</div>
+  </footer>
+</div>
+
 <div class="lightbox" id="lightbox">
   <button class="lb-close" id="lbClose"><i class="bi bi-x-lg"></i></button>
   <button class="lb-nav lb-prev" id="lbPrev"><i class="bi bi-chevron-left"></i></button>
@@ -493,7 +580,200 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <audio id="bgAudio" loop><source src="ramansbackground.mp3" type="audio/mpeg"></audio>
 </div>
 
+<!-- LOCK SCREEN -->
+<div class="lock-screen show" id="lockScreen">
+  <div class="lock-card" id="lockCard">
+    <div class="lock-icon"><i class="bi bi-lock-fill" id="lockIcon"></i></div>
+
+    <!-- LOCKED STATE -->
+    <div class="lock-state-locked">
+      <div class="lock-kicker">Sealed for the skies</div>
+      <h1 class="lock-title">Not yet, <span>Raman.</span></h1>
+
+      <div class="riddle">
+        <p>Something has been made for you, and it opens only when the clock hits zero. No peeking.<br>
+        </p>
+      </div>
+
+      <div class="countdown" id="countdown">
+        <div class="cd-box"><b id="cdH">00</b><span>Hours</span></div>
+        <div class="cd-box"><b id="cdM">00</b><span>Mins</span></div>
+        <div class="cd-box"><b id="cdS">00</b><span>Secs</span></div>
+      </div>
+      <div class="lock-when">Unlocks at <b>11:00 PM IST</b> · 4 Nov 2026<br>
+        That's <b id="localWhen">—</b> where you are.</div>
+
+      <button class="btn-try" id="tryBtn"><i class="bi bi-key-fill"></i> Try to open anyway</button>
+      <div class="lock-msg" id="lockMsg"></div>
+    </div>
+
+    <!-- UNLOCKED STATE -->
+    <div class="lock-state-unlocked">
+      <div class="lock-kicker">The seal is broken</div>
+      <h1 class="lock-title">It's <span>open,</span> Raman.</h1>
+      <p class="unlock-text">You waited. The sky kept your secret and now it's yours.<br>There's a letter inside, written just for you.</p>
+      <div class="unlock-actions">
+        <button class="btn-play" id="openLetterBtn"><i class="bi bi-envelope-heart-fill"></i> Read the letter</button>
+        <button class="btn-ghost" id="enterSiteBtn"><i class="bi bi-play-fill"></i> Enter the site</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+/* =====================================================
+   LOCK CONFIG  — change these two things if needed
+   ===================================================== */
+// 11:00 PM IST (UTC+05:30) on 4 November 2026
+const UNLOCK_AT = Date.parse('2026-11-04T23:00:00+05:30');
+
+// Edit the letter here
+const LETTER = {
+  date: "4 November 2026",
+  greeting: "Dear Raman,",
+  paragraphs: [
+    "If you're reading this, you did it — you waited. Somewhere above the clouds, with the whole world small beneath you, the lock finally let go.",
+    "I wanted you to open this at a moment like this, between where you were and where you're going. Everything on this page is a chapter of you: the late study sessions, the coffee-room laughs, Holi colours, the stage lights, the graduation day you worked so hard for.",
+    "I hope you see what I see: someone who keeps showing up, who makes people feel at home, who turns ordinary days into memories worth keeping.",
+    "Wherever this flight lands, carry the good stuff with you — the people who believe in you, the version of yourself who said yes to the brave decision. Go home, rest, eat well, and let the people who love you hug you for a long time.",
+    "And when you're ready, come back — this story is still being written, and the best chapters haven't happened yet."
+  ],
+  sign: "— With all my love"
+};
+
+/* =====================================================
+   LOCK LOGIC
+   ===================================================== */
+let timeOffset = 0; // server time - device time (if we can reach a server)
+const nowMs = () => Date.now() + timeOffset;
+const isUnlocked = () => nowMs() >= UNLOCK_AT;
+
+(function syncServerTime(){
+  // Tries to read the real time from the server so changing the phone clock doesn't cheat the lock.
+  // If offline (e.g. in flight) or opened from a file, it quietly falls back to the device clock.
+  try{
+    fetch(location.href.split('#')[0], {method:'HEAD', cache:'no-store'})
+      .then(r=>{ const d=r.headers.get('Date'); if(d){ const t=Date.parse(d); if(!isNaN(t)) timeOffset = t - Date.now(); } })
+      .catch(()=>{});
+  }catch(e){}
+})();
+
+const lockScreen = document.getElementById('lockScreen');
+const lockCard = document.getElementById('lockCard');
+const lockIcon = document.getElementById('lockIcon');
+const lockMsg = document.getElementById('lockMsg');
+const pad = n => String(n).padStart(2,'0');
+
+try{
+  document.getElementById('localWhen').textContent =
+    new Date(UNLOCK_AT).toLocaleString(undefined,{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+}catch(e){}
+
+const NOPE = [
+  "Nice try, Raman. The lock isn't impressed.",
+  "Still sealed. The riddle said wait.",
+  "Patience, pilot-in-training. Not yet.",
+  "Even the seatbelt sign is laughing at you.",
+  "Locked tight until eleven in the land of chai."
+];
+let nopeIdx = 0;
+
+function tick(){
+  const rem = UNLOCK_AT - nowMs();
+  if(rem <= 0){ openLockScreen(); return; }
+  const totalSec = Math.floor(rem/1000);
+  const h = Math.floor(totalSec/3600), m = Math.floor((totalSec%3600)/60), s = totalSec%60;
+  document.getElementById('cdH').textContent = pad(h);
+  document.getElementById('cdM').textContent = pad(m);
+  document.getElementById('cdS').textContent = pad(s);
+}
+
+function openLockScreen(){
+  if(lockScreen.classList.contains('is-open')) return;
+  lockScreen.classList.add('is-open');
+  lockIcon.className = 'bi bi-unlock-fill';
+}
+
+document.getElementById('tryBtn').addEventListener('click', ()=>{
+  if(isUnlocked()){ openLockScreen(); return; }
+  lockCard.classList.remove('shake'); void lockCard.offsetWidth; lockCard.classList.add('shake');
+  lockMsg.textContent = NOPE[nopeIdx++ % NOPE.length];
+});
+
+function enterSite(target){
+  if(!isUnlocked()) return;               // hard guard
+  document.body.classList.remove('locked');
+  lockScreen.classList.remove('show');
+  goTo(target || 'home');
+}
+document.getElementById('openLetterBtn').addEventListener('click', ()=>enterSite('letter'));
+document.getElementById('enterSiteBtn').addEventListener('click', ()=>enterSite('home'));
+
+// If someone removes the overlay via dev tools, the "locked" class on <body> still hides everything.
+// Keep re-checking so the lock can't be left half-removed before time.
+setInterval(()=>{
+  if(!isUnlocked()){
+    document.body.classList.add('locked');
+    lockScreen.classList.add('show');
+    lockScreen.classList.remove('is-open');
+    lockIcon.className = 'bi bi-lock-fill';
+  }
+}, 500);
+
+setInterval(tick, 250);
+tick();
+
+/* =====================================================
+   LETTER PAGE
+   ===================================================== */
+let letterRun = 0; // cancels an older typing run if the letter is reopened
+function buildLetter(){
+  const run = ++letterRun;
+  const dateEl = document.getElementById('letterDate');
+  const greet = document.getElementById('letterGreet');
+  const body = document.getElementById('letterBody');
+  const sign = document.getElementById('letterSign');
+  dateEl.textContent = LETTER.date;
+  greet.textContent = ''; body.innerHTML = ''; sign.textContent = '';
+  document.querySelectorAll('.letter-skip').forEach(b=>b.remove());
+
+  // Build the list of lines to be written, in order
+  const targets = [{el:greet, text:LETTER.greeting, pause:700}];
+  LETTER.paragraphs.forEach(t=>{
+    const p = document.createElement('p'); body.appendChild(p);
+    targets.push({el:p, text:t, pause:600});
+  });
+  targets.push({el:sign, text:LETTER.sign, pause:0});
+
+  let skipped = false;
+  const skip = document.createElement('button');
+  skip.className = 'letter-skip'; skip.textContent = 'Skip writing';
+  skip.addEventListener('click', ()=>{
+    skipped = true;
+    targets.forEach(t=>{ t.el.textContent = t.text; t.el.classList.remove('type-cursor'); });
+    skip.remove();
+  });
+  document.querySelector('.letter-paper').appendChild(skip);
+
+  const wait = ms => new Promise(r=>setTimeout(r, ms));
+  (async ()=>{
+    await wait(800);                                  // brief pause, then the pen starts
+    for(const t of targets){
+      if(skipped || run !== letterRun) return;
+      t.el.classList.add('type-cursor');
+      for(let i=1; i<=t.text.length; i++){
+        if(skipped || run !== letterRun) return;
+        t.el.textContent = t.text.slice(0, i);
+        const ch = t.text[i-1];
+        await wait(ch==='.'||ch==='—' ? 260 : (ch===','||ch===';') ? 140 : 38);
+      }
+      t.el.classList.remove('type-cursor');
+      await wait(t.pause);
+    }
+    skip.remove();
+  })();
+}
+
 /* SCROLL-AWARE NAV */
 const mainNav=document.getElementById('mainNav');
 function onScroll(){ mainNav.classList.toggle('scrolled', window.scrollY>40); }
@@ -501,7 +781,7 @@ window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
 /* VIEW SWITCHING */
-const viewNames=['home','photos','videos','graduation','bigvideo','fatima','malaysia'];
+const viewNames=['home','photos','videos','graduation','bigvideo','fatima','malaysia','letter'];
 const views={}; viewNames.forEach(n=>views[n]=document.getElementById('view-'+n));
 let inited={};
 const hamburger=document.getElementById('hamburger'), mobileDrawer=document.getElementById('mobileDrawer');
@@ -512,11 +792,13 @@ const cardObserver=new IntersectionObserver(entries=>{
 
 function goTo(name){
   if(!views[name])return;
+  if(!isUnlocked()) return;               // nothing opens before the timer ends
   viewNames.forEach(n=>views[n].classList.toggle('active-view',n===name));
   document.querySelectorAll('.nav-links a, .mobile-drawer a').forEach(a=>a.classList.toggle('active',a.dataset.nav===name));
   window.scrollTo({top:0,behavior:'auto'});
   mobileDrawer.classList.remove('open'); hamburger.classList.remove('open');
   if(!inited[name]){ inited[name]=true; initView(name); }
+  if(name==='letter') buildLetter();
   requestAnimationFrame(()=>{
     document.querySelectorAll(`#view-${name} .rcard:not(.visible)`).forEach(el=>cardObserver.observe(el));
   });
@@ -648,7 +930,7 @@ function buildPhotoRows(){
 }
 let photoItemsFlat=[];
 
-/* VIDEOS DATA (FIXED: all groups are now inside one array) */
+/* VIDEOS DATA */
 const VIDEO_GROUPS = [
   { label:"October 2024", items:[
     {src:"boys%20.mp4", cap:"Oct 2024"},
