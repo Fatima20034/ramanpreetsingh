@@ -192,7 +192,7 @@ h1.title .r{color:var(--red);}
 .rcard.video-card video{height:100%;width:100%;object-fit:cover;background:#000;display:block;pointer-events:none;}
 .rcard.video-card.active{outline:2px solid var(--red);outline-offset:-2px;}
 
-/* ============ VIDEOS PAGE (big single featured video + rail) ============ */
+/* ============ VIDEOS PAGE ============ */
 .video-hero{
   position:relative;max-width:1500px;margin:0 auto;padding:0 4vw 2.5rem;
   scroll-margin-top:80px;
@@ -239,7 +239,7 @@ h1.title .r{color:var(--red);}
   .bigvideo-frame{aspect-ratio:9/13;}
 }
 
-/* MALAYSIA (single item) */
+/* MALAYSIA */
 .my-wrap{max-width:900px;margin:0 auto;padding:0 4vw 4rem;}
 .my-frame{
   border-radius:12px;overflow:hidden;background:#000;
@@ -252,7 +252,7 @@ h1.title .r{color:var(--red);}
 .my-caption h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;}
 .my-caption p{font-size:.9rem;color:var(--grey-1);margin-top:.3rem;}
 
-/* GRADUATION / FATIMA (1 video + photos) */
+/* GRADUATION / FATIMA */
 .grad-wrap{max-width:1200px;margin:0 auto;padding:0 4vw 4rem;}
 .grad-video-frame{
   width:100%;border-radius:12px;overflow:hidden;background:#000;
@@ -279,7 +279,7 @@ h1.title .r{color:var(--red);}
   .grad-grid,.fatima-grid{grid-template-columns:repeat(2,1fr);}
 }
 
-/* LIGHTBOXES */
+/* LIGHTBOX */
 .lightbox{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
 .lightbox.active{opacity:1;visibility:visible;}
 .lightbox-img{max-width:min(90vw,1050px);max-height:86vh;object-fit:contain;border-radius:6px;}
@@ -454,7 +454,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     <div class="footer-brand">Raman<span> </span></div>
     <div class="footer-sub">✦ The Chronicle · Front Page ✦</div>
   </footer>
-</div><!-- /view-home -->
+</div>
 
 <!-- ============ PHOTOS VIEW ============ -->
 <div class="view" id="view-photos">
@@ -684,7 +684,7 @@ function buildHighlights(){
 }
 document.addEventListener('DOMContentLoaded', buildHighlights);
 
-/* ── PHOTOS DATA (grouped by date, becomes Netflix rows) ── */
+/* ── PHOTOS DATA ── */
 const PHOTO_GROUPS = [
   { label:"October 2024", items:[
     {src:"Screenshot 2025-10-24 at 8.20.03 PM.png"},
@@ -749,7 +749,7 @@ function buildPhotoRows(){
   let allItems=[]; let globalIdx=0;
   PHOTO_GROUPS.forEach(group=>{
     const block=document.createElement('div'); block.className='row-block';
-    block.innerHTML=`<div class="row-head"><h3>${group.label}</h3><span>${group.items.length} photos</span></div>
+    block.innerHTML=`<div class="row-head"><h3>${group.label}</h3><span>${group.items.length} items</span></div>
       <div class="rail-wrap">
         <button class="rail-arrow left"><i class="bi bi-chevron-left"></i></button>
         <div class="rail"></div>
@@ -833,7 +833,7 @@ function setMainVideo(item, idx, total, groupLabel, opts={}){
   mp.src=item.src;
   if(item.poster) mp.poster=item.poster; else mp.removeAttribute('poster');
   mp.load();
-  if(autoplay) mp.play().catch(()=>{ /* autoplay may be blocked, that's fine */ });
+  if(autoplay) mp.play().catch(()=>{});
   document.getElementById('mainVideoTitle').textContent=(item.title||groupLabel||'Featured').trim();
   document.getElementById('mainVideoSub').textContent=item.cap||item.desc||'';
   document.getElementById('mainVideoCount').textContent=`Video ${idx+1} of ${total}`;
@@ -883,7 +883,7 @@ function buildVideoRows(){
   if(allItems.length) setMainVideo(allItems[0], 0, allItems.length, allItems[0].group, {autoplay:false, scroll:false});
 }
 
-/* ── MALAYSIA (single item; set type to 'photo' or 'video') ── */
+/* ── MALAYSIA ── */
 const MALAYSIA = {
   type:"photo",
   src:"IMG_0340.JPG",
@@ -950,7 +950,7 @@ function buildGraduation(){
   });
 }
 
-/* ── FATIMA & ME (1 video + photos) ── */
+/* ── FATIMA & ME ── */
 const FATIMA = {
   video:"lastvideo.MP4",
   photos:[
@@ -990,7 +990,7 @@ function initView(name){
   if(name==='fatima') buildFatima();
 }
 
-/* ── PHOTO / VIDEO LIGHTBOX ── */
+/* ── LIGHTBOX ── */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbVideo=document.getElementById('lbVideo'), lbCounter=document.getElementById('lbCounter');
 let lbItems=[], lbCurrent=0;
 function renderLbItem(){
@@ -1039,7 +1039,7 @@ document.addEventListener('keydown', e=>{
 inited.home=true;
 </script>
 <script>
-/* ── BACKGROUND MUSIC (Netflix-style player widget) ── */
+/* ── BACKGROUND MUSIC ── */
 (function () {
   const STORAGE_KEY = "bgAudioStateRaman";
   function pickStore() {
