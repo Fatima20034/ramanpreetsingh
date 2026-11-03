@@ -651,13 +651,12 @@ let photoItemsFlat=[];
 
 /* VIDEOS DATA (only files that exist in the repo) */
 const VIDEO_GROUPS = [
-  { label: "October 2024", items: [
-    { src: "boys%20.mp4", cap: "Oct 2024" },
-    { src: "IMG_1261.mp4", cap: "Oct 2024" },
-    { src: "IMG_1262 (1).mp4", cap: "Oct 2024" },
-    { src: "IMG_1263 (1).mp4", cap: "Oct 2024" }
-  ]}
-];
+  { label:"October 2024", items:[
+    {src:"boys%20.mp4", cap:"Oct 2024"},
+    {src:"IMG_1261.mp4", cap:"Oct 2024"},
+    {src:"IMG_1262 (1).mp4", cap:"Oct 2024"},
+    {src:"IMG_1263 (1).mp4", cap:"Oct 2024"}
+  ]},
   { label:"DJ", items:[
     {src:"DJ.MP4", cap:"Feb 2025"}
   ]},
@@ -688,6 +687,9 @@ const VIDEO_GROUPS = [
     {src:"lastvideo.MP4", cap:"Sep 2026"}
   ]}
 ];
+
+// Normalize every path so spaces/parentheses work whether or not they're already encoded
+VIDEO_GROUPS.forEach(g => g.items.forEach(it => { it.src = encodeURI(decodeURI(it.src)); }));
 
 let videoItemsFlat=[];
 let mainVideoErrorBound=false;
