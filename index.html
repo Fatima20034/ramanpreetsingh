@@ -270,6 +270,8 @@ h1.title .r{color:var(--red);}
 .grad-photo:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
 .grad-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
 .grad-photo:hover img{transform:scale(1.05);}
+.grad-photo video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+.grad-photo .gp-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2);font-size:2.2rem;color:#fff;pointer-events:none;}
 .fatima-grid{grid-template-columns:repeat(3,1fr);}
 .fatima-grid .grad-photo{aspect-ratio:3/4;}
 @media(max-width:900px){
@@ -510,7 +512,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     </div>
     <div class="grad-caption">
       <h2>Graduation Day</h2>
-      <p>April 2026</p>
+      <p id="gradCap">April 2026</p>
     </div>
     <div class="grad-grid" id="gradGrid"></div>
   </section>
@@ -714,11 +716,11 @@ const PHOTO_GROUPS = [
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_055.jpg"},
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_088.jpg"},
   ]},
-{ label:"Graduation ~ April 2026", items:[
-  {src:"GRAD 1 .jpg"},
-  {src:"GRAD 2 .jpg"},
-  {type:"video", src:"GRAD%20VIDEO.mov"},
-]},
+  { label:"Graduation ~ April 2026", items:[
+    {src:"GRAD 1 .jpg"},
+    {src:"GRAD 2 .jpg"},
+    {type:"video", src:"GRAD%20VIDEO.mov"},
+  ]},
   { label:"Fatima & Me ~ Sep 2026", items:[
     {src:"IMG_0218.JPG"},
     {src:"F7A1A4A9-5174-4264-B297-143A17DB764E-21598-000002436E6537A3.JPG"},
@@ -756,8 +758,14 @@ function buildPhotoRows(){
     const rail=block.querySelector('.rail');
     group.items.forEach(item=>{
       const idx=globalIdx++; allItems.push(item);
-      const card=document.createElement('div'); card.className='rcard';
-      card.innerHTML=`<img src="${item.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
+      const card=document.createElement('div');
+      if(item.type==='video'){
+        card.className='rcard video-card';
+        card.innerHTML=`<video src="${item.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${group.label}</span></div>`;
+      } else {
+        card.className='rcard';
+        card.innerHTML=`<img src="${item.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
+      }
       card.addEventListener('click',()=>openPhotoLb(allItems, idx));
       rail.appendChild(card);
     });
@@ -898,9 +906,9 @@ function buildMalaysia(){
   document.getElementById('myCap').textContent=MALAYSIA.cap;
 }
 
-/* ── GRADUATION (1 video + photos) ── */
+/* ── GRADUATION (videos + photos) ── */
 const GRADUATION = {
-  video:"GRAD VIDEO.mov",
+  videos:["GRAD%20VIDEO%20(1).mp4","GRAD%20VIDEO.mov"],
   photos:[
     {src:"BEFORE GRAD.JPG"},
     {src:"GRAD 1 .jpg"},
@@ -910,13 +918,34 @@ const GRADUATION = {
 
 function buildGraduation(){
   const v=document.getElementById('gradVideoPlayer');
-  if(v) v.src=GRADUATION.video;
+  const cap=document.getElementById('gradCap');
+  if(v){
+    let i=0;
+    const tryNext=()=>{
+      if(i>=GRADUATION.videos.length){
+        if(cap) cap.textContent="This video can't be played in this browser. Convert it to H.264 MP4.";
+        return;
+      }
+      v.src=GRADUATION.videos[i++];
+      v.load();
+    };
+    v.addEventListener('error',tryNext);
+    tryNext();
+  }
   const grid=document.getElementById('gradGrid');
   grid.innerHTML='';
-  GRADUATION.photos.forEach((p,i)=>{
+  const items=[
+    ...GRADUATION.videos.map(src=>({type:'video',src})),
+    ...GRADUATION.photos
+  ];
+  items.forEach((p,i)=>{
     const d=document.createElement('div'); d.className='grad-photo';
-    d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
-    d.addEventListener('click',()=>openPhotoLb(GRADUATION.photos,i));
+    if(p.type==='video'){
+      d.innerHTML=`<video src="${p.src}#t=0.1" muted playsinline preload="metadata" onerror="this.closest('.grad-photo').style.display='none'"></video><div class="gp-play"><i class="bi bi-play-circle-fill"></i></div>`;
+    } else {
+      d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    }
+    d.addEventListener('click',()=>openPhotoLb(items,i));
     grid.appendChild(d);
   });
 }
