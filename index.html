@@ -7,23 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <style>
-:root{
-  --bg:#141414; --panel:#181818; --panel-2:#0b0b0b; --red:#e50914; --white:#fff;
-  --grey-1:rgba(255,255,255,.7); --grey-2:rgba(255,255,255,.45); --hair:rgba(255,255,255,.1);
-  --green:#46d369;
-}
+:root{--bg:#141414;--panel:#181818;--panel-2:#0b0b0b;--red:#e50914;--white:#fff;--grey-1:rgba(255,255,255,.7);--grey-2:rgba(255,255,255,.45);--hair:rgba(255,255,255,.1);--green:#46d369;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--white);font-family:'Archivo',sans-serif;}
 ::selection{background:var(--red);color:#fff;}
 .view{display:none;} .view.active-view{display:block;}
 
 /* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.1rem 4vw;background:linear-gradient(180deg,rgba(0,0,0,.7),transparent 100%);
-  transition:background .35s ease;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4vw;background:linear-gradient(180deg,rgba(0,0,0,.7),transparent 100%);transition:background .35s ease;}
 nav.scrolled{background:#141414;box-shadow:0 2px 14px rgba(0,0,0,.5);}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.04em;color:var(--red);background:none;border:none;cursor:pointer;}
 .nav-links{display:flex;gap:1.8rem;}
@@ -34,31 +25,15 @@ nav.scrolled{background:#141414;box-shadow:0 2px 14px rgba(0,0,0,.5);}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px);}
-.mobile-drawer{
-  position:fixed;inset:0;z-index:300;background:rgba(10,10,10,.98);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
-  transform:translateY(-100%);transition:transform .4s cubic-bezier(.77,0,.18,1);
-}
+.mobile-drawer{position:fixed;inset:0;z-index:300;background:rgba(10,10,10,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;transform:translateY(-100%);transition:transform .4s cubic-bezier(.77,0,.18,1);}
 .mobile-drawer.open{transform:translateY(0);}
 .mobile-drawer a{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;color:#fff;text-decoration:none;cursor:pointer;}
 .mobile-drawer a:hover{color:var(--red);}
 
 /* HERO */
-.hero{
-  position:relative;min-height:88vh;display:flex;align-items:flex-end;
-  overflow:hidden;padding:0 4vw 3.5rem;
-}
-.hero-bg{
-  position:absolute;inset:0;background-size:cover;background-position:center 10%;
-  filter:brightness(.85) saturate(1.05);transform:scale(1.02);
-  background-color:#0b0b0b;
-}
-.hero-scrim{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(20,20,20,.1) 0%,rgba(20,20,20,0) 30%,rgba(20,20,20,.4) 70%,var(--bg) 100%),
-    linear-gradient(90deg,rgba(20,20,20,.6) 0%,rgba(20,20,20,.15) 45%,rgba(20,20,20,.02) 70%);
-}
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;padding:0 4vw 3.5rem;}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 10%;filter:brightness(.85) saturate(1.05);transform:scale(1.02);background-color:#0b0b0b;}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,.1) 0%,rgba(20,20,20,0) 30%,rgba(20,20,20,.4) 70%,var(--bg) 100%),linear-gradient(90deg,rgba(20,20,20,.6) 0%,rgba(20,20,20,.15) 45%,rgba(20,20,20,.02) 70%);}
 .hero-content{position:relative;z-index:2;max-width:640px;}
 .eyebrow-row{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;font-size:.78rem;color:var(--grey-2);margin-bottom:.9rem;}
 .eyebrow-row .badge{border:1px solid var(--grey-2);padding:.1rem .5rem;font-size:.68rem;border-radius:2px;color:var(--grey-1);}
@@ -85,16 +60,9 @@ h1.title .r{color:var(--red);}
 .hl-header{display:flex;align-items:center;justify-content:space-between;padding:1.6rem 4vw 1rem;}
 .hl-header h2{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em;}
 .hl-header span{font-size:.72rem;color:var(--grey-2);}
-.hl-rail{
-  display:flex;gap:1rem;overflow-x:auto;scroll-behavior:smooth;
-  padding:.4rem 4vw 1.6rem;scrollbar-width:none;
-}
+.hl-rail{display:flex;gap:1rem;overflow-x:auto;scroll-behavior:smooth;padding:.4rem 4vw 1.6rem;scrollbar-width:none;}
 .hl-rail::-webkit-scrollbar{display:none;}
-.hl-card{
-  flex:0 0 auto;width:260px;border-radius:8px;overflow:hidden;cursor:pointer;
-  background:var(--panel);border:1px solid var(--hair);
-  transition:transform .3s,box-shadow .3s,border-color .3s;
-}
+.hl-card{flex:0 0 auto;width:260px;border-radius:8px;overflow:hidden;cursor:pointer;background:var(--panel);border:1px solid var(--hair);transition:transform .3s,box-shadow .3s,border-color .3s;}
 .hl-card:hover{transform:translateY(-8px);box-shadow:0 20px 45px rgba(0,0,0,.55);border-color:var(--red);}
 .hl-thumb{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#050505;}
 .hl-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block;}
@@ -108,12 +76,7 @@ h1.title .r{color:var(--red);}
 .shelf{padding:1rem 4vw 1rem;max-width:1300px;margin:0 auto;}
 .shelf h2{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.03em;margin-bottom:1.2rem;}
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;}
-.tile{
-  position:relative;border-radius:8px;overflow:hidden;cursor:pointer;
-  border:1px solid var(--hair);background:linear-gradient(150deg,#222,#050505);
-  display:flex;align-items:flex-end;transition:transform .3s,box-shadow .3s;
-  aspect-ratio:2/3;height:auto;
-}
+.tile{position:relative;border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid var(--hair);background:linear-gradient(150deg,#222,#050505);display:flex;align-items:flex-end;transition:transform .3s,box-shadow .3s;aspect-ratio:2/3;height:auto;}
 .tile:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:transform .4s;}
 .tile:hover img{transform:scale(1.06);}
@@ -142,110 +105,53 @@ h1.title .r{color:var(--red);}
 .row-head{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.8rem;padding:0 4vw;}
 .row-head h3{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.04em;font-weight:400;text-transform:uppercase;color:#e8e8e8;}
 .row-head span{font-size:.72rem;color:var(--grey-2);}
-
 .rail-wrap{position:relative;}
-.rail{
-  display:flex;gap:.5rem;overflow-x:auto;scroll-behavior:smooth;
-  padding:.4rem 4vw 1rem;scrollbar-width:none;
-}
+.rail{display:flex;gap:.5rem;overflow-x:auto;scroll-behavior:smooth;padding:.4rem 4vw 1rem;scrollbar-width:none;}
 .rail::-webkit-scrollbar{display:none;}
-.rail-arrow{
-  position:absolute;top:0;bottom:1rem;width:52px;z-index:10;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(90deg,rgba(20,20,20,.85),transparent);
-  border:none;color:#fff;font-size:1.4rem;cursor:pointer;opacity:0;
-  transition:opacity .2s;
-}
+.rail-arrow{position:absolute;top:0;bottom:1rem;width:52px;z-index:10;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(20,20,20,.85),transparent);border:none;color:#fff;font-size:1.4rem;cursor:pointer;opacity:0;transition:opacity .2s;}
 .rail-wrap:hover .rail-arrow{opacity:1;}
 .rail-arrow.right{right:0;background:linear-gradient(270deg,rgba(20,20,20,.85),transparent);}
 .rail-arrow.left{left:0;}
-
-.rcard{
-  flex:0 0 auto;position:relative;border-radius:4px;overflow:hidden;background:var(--panel);
-  cursor:pointer;height:320px;width:220px;max-width:420px;
-  opacity:0;transform:translateY(16px) scale(1);
-  transition:opacity .5s,transform .28s ease,z-index 0s;
-}
+.rcard{flex:0 0 auto;position:relative;border-radius:4px;overflow:hidden;background:var(--panel);cursor:pointer;height:320px;width:220px;max-width:420px;opacity:0;transform:translateY(16px) scale(1);transition:opacity .5s,transform .28s ease,z-index 0s;}
 .rcard.visible{opacity:1;transform:translateY(0) scale(1);}
 .rcard img{height:100%;width:100%;object-fit:cover;background:#000;display:block;}
 .rcard .num-badge{position:absolute;top:.5rem;left:.5rem;font-family:'Bebas Neue',sans-serif;font-size:.85rem;background:rgba(0,0,0,.55);padding:.1rem .5rem;border-radius:3px;color:var(--grey-1);z-index:3;}
 .rcard .play-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background .2s;opacity:0;z-index:2;}
-.rcard .card-info{
-  position:absolute;left:0;right:0;bottom:0;padding:.6rem .7rem .55rem;
-  background:linear-gradient(0deg,rgba(0,0,0,.95) 20%,rgba(0,0,0,.6) 70%,transparent);
-  opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;z-index:2;
-}
+.rcard .card-info{position:absolute;left:0;right:0;bottom:0;padding:.6rem .7rem .55rem;background:linear-gradient(0deg,rgba(0,0,0,.95) 20%,rgba(0,0,0,.6) 70%,transparent);opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s;z-index:2;}
 .rcard .card-info .ci-label{font-size:.68rem;color:var(--grey-1);letter-spacing:.02em;display:flex;align-items:center;gap:.35rem;}
 .rcard .card-info .ci-label i{color:var(--red);font-size:.75rem;}
-.rcard:hover{
-  transform:translateY(-14px) scale(1.12);
-  box-shadow:0 24px 55px rgba(0,0,0,.65);
-  z-index:5;border-radius:6px;
-}
+.rcard:hover{transform:translateY(-14px) scale(1.12);box-shadow:0 24px 55px rgba(0,0,0,.65);z-index:5;border-radius:6px;}
 .rcard:hover .play-ov{opacity:1;background:rgba(0,0,0,.15);}
 .rcard:hover .card-info{opacity:1;transform:translateY(0);}
 .rcard .play-ov i{font-size:1.6rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);}
-
-/* VIDEO CARDS (Videos page rail) */
 .rcard.video-card .play-ov{opacity:1;background:rgba(0,0,0,.18);}
 .rcard.video-card .play-ov i{font-size:2.1rem;}
 .rcard.video-card video{height:100%;width:100%;object-fit:cover;background:#000;display:block;pointer-events:none;}
 .rcard.video-card.active{outline:2px solid var(--red);outline-offset:-2px;}
 
-/* ============ VIDEOS PAGE ============ */
-.video-hero{
-  position:relative;max-width:1500px;margin:0 auto;padding:0 4vw 2.5rem;
-  scroll-margin-top:80px;
-}
-.video-hero-frame{
-  position:relative;width:100%;border-radius:10px;overflow:hidden;
-  background:#000;border:1px solid var(--hair);
-  box-shadow:0 30px 70px rgba(0,0,0,.55);
-  aspect-ratio:16/9;
-}
+/* VIDEOS PAGE */
+.video-hero{position:relative;max-width:1500px;margin:0 auto;padding:0 4vw 2.5rem;scroll-margin-top:80px;}
+.video-hero-frame{position:relative;width:100%;border-radius:10px;overflow:hidden;background:#000;border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);aspect-ratio:16/9;}
 .video-hero-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
-.video-hero-meta{
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-  margin-top:1.1rem;
-}
+.video-hero-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1.1rem;}
 .video-hero-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.03em;}
 .video-hero-sub{font-size:.8rem;color:var(--grey-2);margin-top:.25rem;}
 .video-hero-count{font-size:.72rem;color:var(--grey-2);letter-spacing:.08em;text-transform:uppercase;}
-
 .video-rows{padding:0 0 5rem;max-width:1500px;margin:0 auto;}
+@media(max-width:900px){.video-hero-frame{aspect-ratio:9/13;}}
 
-@media(max-width:900px){
-  .video-hero-frame{aspect-ratio:9/13;}
-}
-
-/* ============ SINGLE BIG VIDEO PAGE ============ */
-.bigvideo-wrap{
-  max-width:1600px;margin:0 auto;padding:0 4vw 4rem;
-}
-.bigvideo-frame{
-  position:relative;width:100%;border-radius:12px;overflow:hidden;
-  background:#000;border:1px solid var(--hair);
-  box-shadow:0 40px 90px rgba(0,0,0,.6);
-  aspect-ratio:16/9;
-}
+/* BIG VIDEO */
+.bigvideo-wrap{max-width:1600px;margin:0 auto;padding:0 4vw 4rem;}
+.bigvideo-frame{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--hair);box-shadow:0 40px 90px rgba(0,0,0,.6);aspect-ratio:16/9;}
 .bigvideo-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
-.bigvideo-caption{
-  margin-top:1.4rem;max-width:760px;
-}
+.bigvideo-caption{margin-top:1.4rem;max-width:760px;}
 .bigvideo-caption h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.03em;margin-bottom:.5rem;}
 .bigvideo-caption p{font-size:.92rem;color:var(--grey-1);line-height:1.7;}
-
-@media(max-width:900px){
-  .bigvideo-frame{aspect-ratio:9/13;}
-}
+@media(max-width:900px){.bigvideo-frame{aspect-ratio:9/13;}}
 
 /* MALAYSIA */
 .my-wrap{max-width:900px;margin:0 auto;padding:0 4vw 4rem;}
-.my-frame{
-  border-radius:12px;overflow:hidden;background:#000;
-  border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);
-  cursor:pointer;transition:transform .3s,border-color .3s;
-}
+.my-frame{border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);cursor:pointer;transition:transform .3s,border-color .3s;}
 .my-frame:hover{transform:translateY(-6px);border-color:var(--red);}
 .my-frame img,.my-frame video{width:100%;max-height:78vh;object-fit:contain;display:block;}
 .my-caption{margin-top:1.2rem;}
@@ -254,19 +160,13 @@ h1.title .r{color:var(--red);}
 
 /* GRADUATION / FATIMA */
 .grad-wrap{max-width:1200px;margin:0 auto;padding:0 4vw 4rem;}
-.grad-video-frame{
-  width:100%;border-radius:12px;overflow:hidden;background:#000;
-  border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);aspect-ratio:16/9;
-}
+.grad-video-frame{width:100%;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--hair);box-shadow:0 30px 70px rgba(0,0,0,.55);aspect-ratio:16/9;}
 .grad-video-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
 .grad-caption{margin:1.2rem 0 2rem;}
 .grad-caption h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.03em;}
 .grad-caption p{font-size:.9rem;color:var(--grey-1);margin-top:.3rem;}
 .grad-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.grad-photo{
-  position:relative;border-radius:8px;overflow:hidden;cursor:pointer;background:#050505;
-  border:1px solid var(--hair);aspect-ratio:2/3;transition:transform .3s,box-shadow .3s,border-color .3s;
-}
+.grad-photo{position:relative;border-radius:8px;overflow:hidden;cursor:pointer;background:#050505;border:1px solid var(--hair);aspect-ratio:2/3;transition:transform .3s,box-shadow .3s,border-color .3s;}
 .grad-photo:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
 .grad-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
 .grad-photo:hover img{transform:scale(1.05);}
@@ -274,10 +174,7 @@ h1.title .r{color:var(--red);}
 .grad-photo .gp-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2);font-size:2.2rem;color:#fff;pointer-events:none;}
 .fatima-grid{grid-template-columns:repeat(3,1fr);}
 .fatima-grid .grad-photo{aspect-ratio:3/4;}
-@media(max-width:900px){
-  .grad-video-frame{aspect-ratio:9/13;}
-  .grad-grid,.fatima-grid{grid-template-columns:repeat(2,1fr);}
-}
+@media(max-width:900px){.grad-video-frame{aspect-ratio:9/13;}.grad-grid,.fatima-grid{grid-template-columns:repeat(2,1fr);}}
 
 /* LIGHTBOX */
 .lightbox{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
@@ -297,12 +194,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 .footer-brand span{color:var(--red);}
 .footer-sub{font-size:.72rem;letter-spacing:.1em;color:var(--grey-2);text-transform:uppercase;}
 
-.player{
-  position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;
-  background:rgba(20,20,20,.95);border:1px solid var(--hair);border-left:3px solid var(--red);
-  display:flex;align-items:center;gap:.8rem;padding:.6rem 1.2rem;border-radius:4px;
-  opacity:0;animation:slideUp .6s .4s forwards;
-}
+.player{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;background:rgba(20,20,20,.95);border:1px solid var(--hair);border-left:3px solid var(--red);display:flex;align-items:center;gap:.8rem;padding:.6rem 1.2rem;border-radius:4px;opacity:0;animation:slideUp .6s .4s forwards;}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .player-btn{background:none;border:none;color:var(--red);font-size:1rem;cursor:pointer;transition:transform .2s;padding:0;line-height:1;}
 .player-btn:hover{transform:scale(1.2);}
@@ -356,7 +248,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <a data-nav="malaysia">Malaysia</a>
 </div>
 
-<!-- ============ HOME VIEW ============ -->
+<!-- HOME -->
 <div class="view active-view" id="view-home">
   <section class="hero">
     <div class="hero-bg" style="background-image:url('IMG_0340.JPG')"></div>
@@ -418,7 +310,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
         </div>
       </div>
       <div class="tile" data-nav="bigvideo">
-        <img src="Screenshot%202025-10-24%20at%208.20.03%E2%80%AFPM.png" alt="Feature" onerror="this.style.display='none'">
+        <img src="DJ_044.jpg" alt="Feature" onerror="this.style.display='none'">
         <div class="tile-body">
           <div class="tile-kicker">Issue 04 · The Feature</div>
           <div class="tile-title">Watch</div>
@@ -456,7 +348,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ PHOTOS VIEW ============ -->
+<!-- PHOTOS -->
 <div class="view" id="view-photos">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 01 · 2024–2026 ✦</p>
@@ -470,14 +362,13 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ VIDEOS VIEW ============ -->
+<!-- VIDEOS -->
 <div class="view" id="view-videos">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 02 · Now Playing ✦</p>
     <h1 class="cover-title">Video <span>Collection</span></h1>
     <p class="cover-sub">The moments that were too good to just be photos. Press play.</p>
   </section>
-
   <section class="video-hero">
     <div class="video-hero-frame">
       <video id="mainVideoPlayer" controls playsinline preload="metadata"></video>
@@ -490,16 +381,14 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
       <div class="video-hero-count" id="mainVideoCount"></div>
     </div>
   </section>
-
   <section class="video-rows" id="rows-videos"></section>
-
   <footer>
     <div class="footer-brand">Raman<span> </span></div>
     <div class="footer-sub">✦ Issue 02 · Videos ✦</div>
   </footer>
 </div>
 
-<!-- ============ GRADUATION VIEW ============ -->
+<!-- GRADUATION -->
 <div class="view" id="view-graduation">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 03 · The Big Day ✦</p>
@@ -522,19 +411,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ BIG SINGLE VIDEO VIEW ============ -->
+<!-- FEATURE -->
 <div class="view" id="view-bigvideo">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 04 · The Feature ✦</p>
     <h1 class="cover-title">The <span>Feature</span></h1>
     <p class="cover-sub">One video, full screen, no distractions.</p>
   </section>
-
   <section class="bigvideo-wrap">
     <div class="bigvideo-frame">
-      <video id="bigVideoPlayer" controls playsinline preload="metadata"
-             poster="assets/feature-poster.jpg">
-        <source src="2024-2026.m4v" type="video/mp4">
+      <video id="bigVideoPlayer" controls playsinline preload="metadata">
+        <source src="2024-2026.mp4" type="video/mp4">
       </video>
     </div>
     <div class="bigvideo-caption">
@@ -542,14 +429,13 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
       <p>The moment that says it all — no captions needed, just watch.</p>
     </div>
   </section>
-
   <footer>
     <div class="footer-brand">Raman<span> </span></div>
     <div class="footer-sub">✦ Issue 04 · Feature ✦</div>
   </footer>
 </div>
 
-<!-- ============ FATIMA & ME VIEW ============ -->
+<!-- FATIMA & ME -->
 <div class="view" id="view-fatima">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 05 · Fatima &amp; Me ✦</p>
@@ -569,7 +455,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- ============ MALAYSIA VIEW ============ -->
+<!-- MALAYSIA -->
 <div class="view" id="view-malaysia">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 06 · Travel ✦</p>
@@ -606,17 +492,16 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 </div>
 
 <script>
-/* ── SCROLL-AWARE NAV ── */
+/* SCROLL-AWARE NAV */
 const mainNav=document.getElementById('mainNav');
 function onScroll(){ mainNav.classList.toggle('scrolled', window.scrollY>40); }
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
-/* ── VIEW SWITCHING ── */
+/* VIEW SWITCHING */
 const viewNames=['home','photos','videos','graduation','bigvideo','fatima','malaysia'];
 const views={}; viewNames.forEach(n=>views[n]=document.getElementById('view-'+n));
 let inited={};
-
 const hamburger=document.getElementById('hamburger'), mobileDrawer=document.getElementById('mobileDrawer');
 
 const cardObserver=new IntersectionObserver(entries=>{
@@ -633,42 +518,26 @@ function goTo(name){
   requestAnimationFrame(()=>{
     document.querySelectorAll(`#view-${name} .rcard:not(.visible)`).forEach(el=>cardObserver.observe(el));
   });
-  if(name!=='videos'){
-    const mp=document.getElementById('mainVideoPlayer');
-    if(mp) mp.pause();
-  }
-  if(name!=='graduation'){
-    const gv=document.getElementById('gradVideoPlayer');
-    if(gv) gv.pause();
-  }
-  if(name!=='bigvideo'){
-    const bv=document.getElementById('bigVideoPlayer');
-    if(bv) bv.pause();
-  }
-  if(name!=='fatima'){
-    const fv=document.getElementById('fatimaVideoPlayer');
-    if(fv) fv.pause();
-  }
-  if(name!=='malaysia'){
-    const mv=document.querySelector('#myFrame video');
-    if(mv) mv.pause();
-  }
+  if(name!=='videos'){ const mp=document.getElementById('mainVideoPlayer'); if(mp) mp.pause(); }
+  if(name!=='graduation'){ const gv=document.getElementById('gradVideoPlayer'); if(gv) gv.pause(); }
+  if(name!=='bigvideo'){ const bv=document.getElementById('bigVideoPlayer'); if(bv) bv.pause(); }
+  if(name!=='fatima'){ const fv=document.getElementById('fatimaVideoPlayer'); if(fv) fv.pause(); }
+  if(name!=='malaysia'){ const mv=document.querySelector('#myFrame video'); if(mv) mv.pause(); }
 }
 document.querySelectorAll('[data-nav]').forEach(el=>{
   el.addEventListener('click', e=>{ e.preventDefault(); goTo(el.dataset.nav); });
 });
-
 hamburger.addEventListener('click', ()=>{
   const open=hamburger.classList.toggle('open');
   mobileDrawer.classList.toggle('open', open);
 });
 
-/* ── HIGHLIGHT REEL (home page) ── */
+/* HIGHLIGHT REEL (uses photos that exist in the repo) */
 const HIGHLIGHTS = [
-  {src:"highlight-1.jpg", title:"The Beginning", desc:"Every journey starts with one brave decision."},
-  {src:"highlight-2.jpg", title:"Early Days", desc:"New places, unfamiliar faces, and countless firsts."},
-  {src:"highlight-3.jpg", title:"Finding His People", desc:"Some moments happen when you least expect them."},
-  {src:"highlight-4.jpg", title:"The Journey Continues", desc:"This story is still being written."},
+  {src:"IMG_0218.JPG", title:"The Beginning", desc:"Every journey starts with one brave decision."},
+  {src:"DJ_044.jpg", title:"Early Days", desc:"New places, unfamiliar faces, and countless firsts."},
+  {src:"GRAD 1 .jpg", title:"Finding His People", desc:"Some moments happen when you least expect them."},
+  {src:"IMG_0340.JPG", title:"The Journey Continues", desc:"This story is still being written."},
 ];
 
 function buildHighlights(){
@@ -677,18 +546,16 @@ function buildHighlights(){
   rail.innerHTML='';
   HIGHLIGHTS.forEach((h,idx)=>{
     const card=document.createElement('div'); card.className='hl-card';
-    card.innerHTML=`<div class="hl-thumb"><span class="hl-num">${idx+1}</span><img src="${h.src}" alt="${h.title}" loading="lazy" onerror="this.closest('.hl-card').style.display='none'"></div><div class="hl-body"><h3>${h.title}</h3><p>${h.desc}</p></div>`;
-    card.addEventListener('click', ()=>openPhotoLb(HIGHLIGHTS, idx));
+    card.innerHTML=`<div class="hl-thumb"><span class="hl-num">${idx+1}</span><img src="${encodeURI(h.src)}" alt="${h.title}" loading="lazy" onerror="this.closest('.hl-card').style.display='none'"></div><div class="hl-body"><h3>${h.title}</h3><p>${h.desc}</p></div>`;
+    card.addEventListener('click', ()=>openPhotoLb(HIGHLIGHTS.map(x=>({src:encodeURI(x.src)})), idx));
     rail.appendChild(card);
   });
 }
 document.addEventListener('DOMContentLoaded', buildHighlights);
 
-/* ── PHOTOS DATA ── */
+/* PHOTOS DATA (only files that exist in the repo) */
 const PHOTO_GROUPS = [
   { label:"October 2024", items:[
-    {src:"Screenshot 2025-10-24 at 8.20.03 PM.png"},
-    {src:"smile.PNG"},
     {src:"FE684D7A-9632-43C9-BD3D-1A45694C96D8-19316-000002E1E0D41067.JPG"},
     {src:"CB1F2FEF-4596-4A3B-839C-79C779C238D8-19316-000002E149378C4E.JPG"},
     {src:"D1A2205D-5BE2-429B-82ED-33CE1E342AF7-19316-000002E188E55227.JPG"},
@@ -698,7 +565,6 @@ const PHOTO_GROUPS = [
   ]},
   { label:"HOLI 2025", items:[
     {src:"IMG_0451.PNG"},
-    {src:"HOLI SNAP_007.jpg"},
   ]},
   { label:"PRESENTATION 2025", items:[
     {src:"Screen Shot 2025-05-08 at 2.00.42 AM.png"},
@@ -715,14 +581,17 @@ const PHOTO_GROUPS = [
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_022.jpg"},
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_055.jpg"},
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_088.jpg"},
+    {src:"3841423171555247747_156394436004.jpg"},
   ]},
   { label:"Graduation ~ April 2026", items:[
+    {src:"BEFORE GRAD.JPG"},
     {src:"GRAD 1 .jpg"},
     {src:"GRAD 2 .jpg"},
-    {type:"video", src:"GRAD%20VIDEO.mov"},
+    {type:"video", src:"GRAD%20VIDEO%20(1).mp4"},
   ]},
   { label:"Fatima & Me ~ Sep 2026", items:[
     {src:"IMG_0218.JPG"},
+    {src:"IMG_0218 copy.JPG"},
     {src:"F7A1A4A9-5174-4264-B297-143A17DB764E-21598-000002436E6537A3.JPG"},
     {src:"WhatsApp Image 2026-09-28 at 23.46.12.jpeg"},
     {src:"IMG_0218 2.jpg"},
@@ -757,14 +626,16 @@ function buildPhotoRows(){
       </div>`;
     const rail=block.querySelector('.rail');
     group.items.forEach(item=>{
-      const idx=globalIdx++; allItems.push(item);
+      const idx=globalIdx++;
+      const safe=item.type==='video'?item:{...item, src:encodeURI(decodeURI(item.src))};
+      allItems.push(safe);
       const card=document.createElement('div');
       if(item.type==='video'){
         card.className='rcard video-card';
-        card.innerHTML=`<video src="${item.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${group.label}</span></div>`;
+        card.innerHTML=`<video src="${safe.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${group.label}</span></div>`;
       } else {
         card.className='rcard';
-        card.innerHTML=`<img src="${item.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
+        card.innerHTML=`<img src="${safe.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
       }
       card.addEventListener('click',()=>openPhotoLb(allItems, idx));
       rail.appendChild(card);
@@ -774,16 +645,12 @@ function buildPhotoRows(){
   });
   return allItems;
 }
-
 let photoItemsFlat=[];
 
-/* ── VIDEOS DATA ── */
+/* VIDEOS DATA (only files that exist in the repo) */
 const VIDEO_GROUPS = [
   { label:"October 2024", items:[
-    {src:"IMG_2697.MOV", cap:"Oct 2024"},
-    {src:"IMG_1262.MP4", cap:"Oct 2024"},
-    {src:"IMG_1263.MP4", cap:"Oct 2024"},
-    {src:"boys%20.mov", cap:"Oct 2024"}
+    {src:"boys%20.mp4", cap:"Oct 2024"}
   ]},
   { label:"DJ", items:[
     {src:"DJ.MP4", cap:"Feb 2025"}
@@ -791,21 +658,16 @@ const VIDEO_GROUPS = [
   { label:"Holi 2025", items:[
     {src:"Waikato%20Students%E2%80%99%20Union%20%20Colors,%20chaos,%20and%20pure%20j.MOV", cap:"April 2025"},
     {src:"HOLI%20SNAP.MOV", cap:"April 2025"},
-    {src:"IMG_7884.mov", cap:"April 2025"},
     {src:"IMG_785.mov", cap:"April 2025"}
   ]},
   { label:"Presentation 2025", items:[
-    {src:"44742226e3f640dab1c1532699378662.MOV", cap:"May 2025"},
+    {src:"44742226e3f640dab1c1532699378662%20(1).mp4", cap:"May 2025"},
     {src:"sleeping%20snap.mp4", cap:"May 2025"}
   ]},
   { label:"MSB Study 2025", items:[
-    {src:"IMG_0754.MOV", cap:"June 2025"},
-    {src:"IMG_0755.MOV", cap:"June 2025"},
-    {src:"IMG_0761.MOV", cap:"June 2025"},
-    {src:"IMG_0760.MOV", cap:"June 2025"}
-  ]},
-  { label:"Fifa in the Pa 2025", items:[
-    {src:"IMG_1330.MOV", cap:"June 2025"}
+    {src:"IMG_0754.mp4", cap:"June 2025"},
+    {src:"IMG_0755.mp4", cap:"June 2025"},
+    {src:"IMG_0761.mp4", cap:"June 2025"}
   ]},
   { label:"Coffee Room 2025", items:[
     {src:"CB661AFA-86D7-48CC-B218-C082EAD7241B.MP4", cap:"Aug 2025"}
@@ -814,7 +676,6 @@ const VIDEO_GROUPS = [
     {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"}
   ]},
   { label:"Grad 2026", items:[
-    {src:"GRAD%20VIDEO.mov", cap:"April 2026"},
     {src:"GRAD%20VIDEO%20(1).mp4", cap:"April 2026"}
   ]},
   { label:"Fatima & Me 2026", items:[
@@ -845,7 +706,6 @@ function buildVideoRows(){
   const container=document.getElementById('rows-videos');
   if(!container) return;
   container.innerHTML='';
-
   const allItems=[];
   VIDEO_GROUPS.forEach(g=>g.items.forEach(it=>allItems.push({...it, group:g.label})));
   videoItemsFlat=allItems;
@@ -854,8 +714,7 @@ function buildVideoRows(){
   if(mp && !mainVideoErrorBound){
     mainVideoErrorBound=true;
     mp.addEventListener('error',()=>{
-      document.getElementById('mainVideoSub').textContent=
-        "This video can't be played in this browser. Convert it to H.264 MP4.";
+      document.getElementById('mainVideoSub').textContent="This video can't be played in this browser. Convert it to H.264 MP4.";
     });
   }
 
@@ -872,7 +731,7 @@ function buildVideoRows(){
     group.items.forEach(item=>{
       const idx=globalIdx++;
       const card=document.createElement('div'); card.className='rcard video-card';
-      card.innerHTML=`<video src="${item.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${item.cap||group.label}</span></div>`;
+      card.innerHTML=`<video src="${item.src}#t=0.1" muted playsinline preload="metadata" onerror="this.closest('.rcard').style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${item.cap||group.label}</span></div>`;
       card.addEventListener('click', ()=>setMainVideo(item, idx, allItems.length, group.label));
       rail.appendChild(card);
     });
@@ -883,13 +742,8 @@ function buildVideoRows(){
   if(allItems.length) setMainVideo(allItems[0], 0, allItems.length, allItems[0].group, {autoplay:false, scroll:false});
 }
 
-/* ── MALAYSIA ── */
-const MALAYSIA = {
-  type:"photo",
-  src:"IMG_0340.JPG",
-  title:"Malaysia",
-  cap:"September 2026"
-};
+/* MALAYSIA */
+const MALAYSIA = { type:"photo", src:"IMG_0340.JPG", title:"Malaysia", cap:"September 2026" };
 
 function buildMalaysia(){
   const frame=document.getElementById('myFrame');
@@ -906,13 +760,13 @@ function buildMalaysia(){
   document.getElementById('myCap').textContent=MALAYSIA.cap;
 }
 
-/* ── GRADUATION (videos + photos) ── */
+/* GRADUATION */
 const GRADUATION = {
-  videos:["GRAD%20VIDEO%20(1).mp4","GRAD%20VIDEO.mov"],
+  videos:["GRAD%20VIDEO%20(1).mp4"],
   photos:[
-    {src:"BEFORE GRAD.JPG"},
-    {src:"GRAD 1 .jpg"},
-    {src:"GRAD 2 .jpg"}
+    {src:"BEFORE%20GRAD.JPG"},
+    {src:"GRAD%201%20.jpg"},
+    {src:"GRAD%202%20.jpg"}
   ]
 };
 
@@ -950,7 +804,7 @@ function buildGraduation(){
   });
 }
 
-/* ── FATIMA & ME ── */
+/* FATIMA & ME */
 const FATIMA = {
   video:"lastvideo.MP4",
   photos:[
@@ -990,7 +844,7 @@ function initView(name){
   if(name==='fatima') buildFatima();
 }
 
-/* ── LIGHTBOX ── */
+/* LIGHTBOX */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbVideo=document.getElementById('lbVideo'), lbCounter=document.getElementById('lbCounter');
 let lbItems=[], lbCurrent=0;
 function renderLbItem(){
@@ -1010,16 +864,9 @@ function renderLbItem(){
   }
   lbCounter.textContent=(lbCurrent+1)+' / '+lbItems.length;
 }
-function openPhotoLb(items, idx){
-  lbItems=items; lbCurrent=idx;
-  renderLbItem();
-  lb.classList.add('active');
-}
+function openPhotoLb(items, idx){ lbItems=items; lbCurrent=idx; renderLbItem(); lb.classList.add('active'); }
 function closePhotoLb(){ lb.classList.remove('active'); lbVideo.pause(); }
-function navPhotoLb(dir){
-  lbCurrent=(lbCurrent+dir+lbItems.length)%lbItems.length;
-  renderLbItem();
-}
+function navPhotoLb(dir){ lbCurrent=(lbCurrent+dir+lbItems.length)%lbItems.length; renderLbItem(); }
 document.getElementById('lbClose').addEventListener('click', closePhotoLb);
 lb.addEventListener('click', e=>{ if(e.target===lb) closePhotoLb(); });
 document.getElementById('lbPrev').addEventListener('click', e=>{ e.stopPropagation(); navPhotoLb(-1); });
@@ -1027,7 +874,6 @@ document.getElementById('lbNext').addEventListener('click', e=>{ e.stopPropagati
 let ptx=0;
 lb.addEventListener('touchstart', e=>{ ptx=e.touches[0].clientX; }, {passive:true});
 lb.addEventListener('touchend', e=>{ const dx=e.changedTouches[0].clientX-ptx; if(Math.abs(dx)>50) navPhotoLb(dx<0?1:-1); }, {passive:true});
-
 document.addEventListener('keydown', e=>{
   if(lb.classList.contains('active')){
     if(e.key==='Escape') closePhotoLb();
@@ -1035,11 +881,10 @@ document.addEventListener('keydown', e=>{
     if(e.key==='ArrowRight') navPhotoLb(1);
   }
 });
-
 inited.home=true;
 </script>
 <script>
-/* ── BACKGROUND MUSIC ── */
+/* BACKGROUND MUSIC */
 (function () {
   const STORAGE_KEY = "bgAudioStateRaman";
   function pickStore() {
