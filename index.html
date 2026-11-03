@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Raman</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -47,10 +50,8 @@ h1.title .r{color:var(--red);}
 .synopsis{font-size:1.02rem;line-height:1.7;color:var(--grey-1);max-width:600px;margin-bottom:1.5rem;}
 .synopsis strong{color:#fff;}
 .action-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.3rem;}
-.btn-play{display:inline-flex;align-items:center;gap:.6rem;background:var(--white);color:#000;font-weight:700;font-size:1.05rem;padding:.75rem 1.9rem;border:none;border-radius:4px;cursor:pointer;transition:background .2s;}
+.btn-play{display:inline-flex;align-items:center;gap:.6rem;background:var(--white);color:#000;font-weight:700;font-size:1.05rem;padding:.75rem 1.9rem;border:none;border-radius:4px;cursor:pointer;transition:background .2s;font-family:inherit;}
 .btn-play:hover{background:rgba(255,255,255,.75);}
-.btn-round{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--grey-2);background:rgba(42,42,42,.6);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,transform .2s;}
-.btn-round:hover{border-color:#fff;transform:scale(1.06);}
 .cast-line{font-size:.85rem;color:var(--grey-2);margin-bottom:.35rem;}
 .cast-line b{color:var(--grey-1);font-weight:500;}
 
@@ -209,7 +210,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 .player-bars span:nth-child(3){animation-delay:.3s;}
 @keyframes barBounce{0%,100%{height:4px;}50%{height:12px;}}
 
-/* ============ LETTER PAGE ============ */
+/* LETTER PAGE */
 .letter-wrap{max-width:760px;margin:0 auto;padding:0 5vw 5rem;}
 .letter-paper{position:relative;background:linear-gradient(180deg,#1b1816,#151311);border:1px solid rgba(229,9,20,.35);border-radius:10px;padding:3rem 2.6rem 2.8rem;box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 60px rgba(229,9,20,.04);}
 .letter-paper::before{content:'';position:absolute;top:0;left:2.6rem;right:2.6rem;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);}
@@ -223,13 +224,13 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 .letter-skip:hover{color:#fff;}
 @media(max-width:600px){.letter-paper{padding:2.2rem 1.4rem;}.letter-body p{font-size:1.4rem;}}
 
-/* ============ LOCK SCREEN ============ */
+/* LOCK SCREEN */
 body.locked > nav,
 body.locked > .view,
 body.locked > .mobile-drawer,
 body.locked > .player,
 body.locked > .lightbox{display:none !important;}
-body.locked, body.gate-open{overflow:hidden;}
+body.locked{overflow:hidden;}
 .lock-screen{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;overflow-y:auto;padding:2rem 1.2rem;background:radial-gradient(ellipse at 50% 20%,#2a0508 0%,#0b0b0b 60%);}
 .lock-screen.show{display:flex;}
 .lock-card{width:100%;max-width:560px;text-align:center;margin:auto;}
@@ -239,7 +240,6 @@ body.locked, body.gate-open{overflow:hidden;}
 .lock-title span{color:var(--red);}
 .riddle{border-left:3px solid var(--red);background:rgba(255,255,255,.04);border-radius:0 8px 8px 0;padding:1.2rem 1.4rem;text-align:left;margin-bottom:1.6rem;}
 .riddle p{font-family:'Caveat',cursive;font-size:1.5rem;line-height:1.45;color:rgba(255,255,255,.9);}
-.riddle p + p{margin-top:.8rem;}
 .countdown{display:flex;justify-content:center;gap:.8rem;margin-bottom:.8rem;}
 .cd-box{min-width:74px;padding:.8rem .4rem .6rem;background:#0f0f0f;border:1px solid var(--hair);border-radius:8px;}
 .cd-box b{display:block;font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;color:#fff;}
@@ -260,7 +260,6 @@ body.locked, body.gate-open{overflow:hidden;}
 .unlock-actions{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;}
 .btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:rgba(109,109,110,.4);color:#fff;font-weight:700;font-size:1.05rem;padding:.75rem 1.9rem;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:background .2s;}
 .btn-ghost:hover{background:rgba(109,109,110,.7);}
-.nav-locked-dot{display:none;}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
 
@@ -585,14 +584,12 @@ body.locked, body.gate-open{overflow:hidden;}
   <div class="lock-card" id="lockCard">
     <div class="lock-icon"><i class="bi bi-lock-fill" id="lockIcon"></i></div>
 
-    <!-- LOCKED STATE -->
     <div class="lock-state-locked">
       <div class="lock-kicker">Sealed for the skies</div>
       <h1 class="lock-title">Not yet, <span>Raman.</span></h1>
 
       <div class="riddle">
-        <p>Something has been made for you, and it opens only when the clock hits zero. No peeking.<br>
-        </p>
+        <p>Something has been made for you, and it opens only when the clock hits zero. No peeking.</p>
       </div>
 
       <div class="countdown" id="countdown">
@@ -600,14 +597,13 @@ body.locked, body.gate-open{overflow:hidden;}
         <div class="cd-box"><b id="cdM">00</b><span>Mins</span></div>
         <div class="cd-box"><b id="cdS">00</b><span>Secs</span></div>
       </div>
-      <div class="lock-when">Unlocks at <b>10:00 PM IST</b> · 4 Nov 2026<br>
+      <div class="lock-when">Unlocks at <b id="istWhen">—</b><br>
         That's <b id="localWhen">—</b> where you are.</div>
 
       <button class="btn-try" id="tryBtn"><i class="bi bi-key-fill"></i> Try to open anyway</button>
       <div class="lock-msg" id="lockMsg"></div>
     </div>
 
-    <!-- UNLOCKED STATE -->
     <div class="lock-state-unlocked">
       <div class="lock-kicker">The seal is broken</div>
       <h1 class="lock-title">It's <span>open,</span> Raman.</h1>
@@ -622,11 +618,13 @@ body.locked, body.gate-open{overflow:hidden;}
 
 <script>
 /* =====================================================
-   LOCK CONFIG  — change these two things if needed
+   LOCK CONFIG — change ONLY the UNLOCK_AT line.
+   Format: YYYY-MM-DDTHH:MM:00+05:30  (24-hour, IST)
+   22:00 = 10:00 PM IST     10:00 = 10:00 AM IST
+   Everything on the lock screen updates from this line.
    ===================================================== */
-// 10:00 PM IST (UTC+05:30) on 4 November 2026
 const UNLOCK_AT = Date.parse('2026-11-04T22:00:00+05:30');
-// Edit the letter here
+
 const LETTER = {
   date: "4 November 2026",
   greeting: "Dear Raman,",
@@ -643,16 +641,22 @@ const LETTER = {
 /* =====================================================
    LOCK LOGIC
    ===================================================== */
-let timeOffset = 0; // server time - device time (if we can reach a server)
+let timeOffset = 0;
 const nowMs = () => Date.now() + timeOffset;
 const isUnlocked = () => nowMs() >= UNLOCK_AT;
 
+// Server time guards against a changed phone clock. A cached/stale response is ignored
+// (that used to push the unlock time off). Offline or opened from a file → device clock.
 (function syncServerTime(){
-  // Tries to read the real time from the server so changing the phone clock doesn't cheat the lock.
-  // If offline (e.g. in flight) or opened from a file, it quietly falls back to the device clock.
   try{
-    fetch(location.href.split('#')[0], {method:'HEAD', cache:'no-store'})
-      .then(r=>{ const d=r.headers.get('Date'); if(d){ const t=Date.parse(d); if(!isNaN(t)) timeOffset = t - Date.now(); } })
+    const t0 = Date.now();
+    fetch(location.href.split('#')[0] + (location.href.indexOf('?')>-1?'&':'?') + '_=' + t0, {method:'HEAD', cache:'no-store'})
+      .then(r=>{
+        const d = r.headers.get('Date'), age = parseInt(r.headers.get('Age')||'0',10);
+        if(!d || age > 5) return;
+        const t = Date.parse(d);
+        if(!isNaN(t)) timeOffset = t - Date.now();
+      })
       .catch(()=>{});
   }catch(e){}
 })();
@@ -663,6 +667,11 @@ const lockIcon = document.getElementById('lockIcon');
 const lockMsg = document.getElementById('lockMsg');
 const pad = n => String(n).padStart(2,'0');
 
+// Lock-screen time text is generated from UNLOCK_AT so it can never disagree with the real time
+try{
+  document.getElementById('istWhen').textContent =
+    new Date(UNLOCK_AT).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit',hour12:true}).replace(/\bam\b/i,'AM').replace(/\bpm\b/i,'PM') + ' IST';
+}catch(e){ document.getElementById('istWhen').textContent = '4 Nov 2026, 10:00 PM IST'; }
 try{
   document.getElementById('localWhen').textContent =
     new Date(UNLOCK_AT).toLocaleString(undefined,{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
@@ -673,7 +682,7 @@ const NOPE = [
   "Still sealed. The riddle said wait.",
   "Patience, pilot-in-training. Not yet.",
   "Even the seatbelt sign is laughing at you.",
-  "Locked tight until eleven in the land of chai."
+  "Locked tight until the clock hits zero."
 ];
 let nopeIdx = 0;
 
@@ -687,9 +696,10 @@ function tick(){
   document.getElementById('cdS').textContent = pad(s);
 }
 
+let siteEntered = false;
 function openLockScreen(){
-  if(lockScreen.classList.contains('is-open')) return;
-  lockScreen.classList.add('is-open');
+  if(siteEntered || lockScreen.classList.contains('is-open')) return;
+  lockScreen.classList.add('show','is-open');
   lockIcon.className = 'bi bi-unlock-fill';
 }
 
@@ -700,7 +710,8 @@ document.getElementById('tryBtn').addEventListener('click', ()=>{
 });
 
 function enterSite(target){
-  if(!isUnlocked()) return;               // hard guard
+  if(!isUnlocked()) return;
+  siteEntered = true;
   document.body.classList.remove('locked');
   lockScreen.classList.remove('show');
   goTo(target || 'home');
@@ -708,10 +719,10 @@ function enterSite(target){
 document.getElementById('openLetterBtn').addEventListener('click', ()=>enterSite('letter'));
 document.getElementById('enterSiteBtn').addEventListener('click', ()=>enterSite('home'));
 
-// If someone removes the overlay via dev tools, the "locked" class on <body> still hides everything.
-// Keep re-checking so the lock can't be left half-removed before time.
+// Keeps the lock closed before time, even if someone removes the overlay in dev tools
 setInterval(()=>{
   if(!isUnlocked()){
+    siteEntered = false;
     document.body.classList.add('locked');
     lockScreen.classList.add('show');
     lockScreen.classList.remove('is-open');
@@ -725,7 +736,7 @@ tick();
 /* =====================================================
    LETTER PAGE
    ===================================================== */
-let letterRun = 0; // cancels an older typing run if the letter is reopened
+let letterRun = 0;
 function buildLetter(){
   const run = ++letterRun;
   const dateEl = document.getElementById('letterDate');
@@ -736,7 +747,6 @@ function buildLetter(){
   greet.textContent = ''; body.innerHTML = ''; sign.textContent = '';
   document.querySelectorAll('.letter-skip').forEach(b=>b.remove());
 
-  // Build the list of lines to be written, in order
   const targets = [{el:greet, text:LETTER.greeting, pause:700}];
   LETTER.paragraphs.forEach(t=>{
     const p = document.createElement('p'); body.appendChild(p);
@@ -756,7 +766,7 @@ function buildLetter(){
 
   const wait = ms => new Promise(r=>setTimeout(r, ms));
   (async ()=>{
-    await wait(800);                                  // brief pause, then the pen starts
+    await wait(800);
     for(const t of targets){
       if(skipped || run !== letterRun) return;
       t.el.classList.add('type-cursor');
@@ -791,7 +801,7 @@ const cardObserver=new IntersectionObserver(entries=>{
 
 function goTo(name){
   if(!views[name])return;
-  if(!isUnlocked()) return;               // nothing opens before the timer ends
+  if(!isUnlocked()) return;
   viewNames.forEach(n=>views[n].classList.toggle('active-view',n===name));
   document.querySelectorAll('.nav-links a, .mobile-drawer a').forEach(a=>a.classList.toggle('active',a.dataset.nav===name));
   window.scrollTo({top:0,behavior:'auto'});
@@ -843,12 +853,8 @@ const PHOTO_GROUPS = [
     {src:"CB1F2FEF-4596-4A3B-839C-79C779C238D8-19316-000002E149378C4E.JPG"},
     {src:"D1A2205D-5BE2-429B-82ED-33CE1E342AF7-19316-000002E188E55227.JPG"},
   ]},
-  { label:"DJ 2025", items:[
-    {src:"DJ_044.jpg"},
-  ]},
-  { label:"HOLI 2025", items:[
-    {src:"IMG_0451.PNG"},
-  ]},
+  { label:"DJ 2025", items:[ {src:"DJ_044.jpg"} ]},
+  { label:"HOLI 2025", items:[ {src:"IMG_0451.PNG"} ]},
   { label:"PRESENTATION 2025", items:[
     {src:"Screen Shot 2025-05-08 at 2.00.42 AM.png"},
     {src:"44742226e3f640dab1c1532699378662_139.jpg"},
@@ -880,9 +886,7 @@ const PHOTO_GROUPS = [
     {src:"D26F9D00-6F4C-412F-9A83-9E5F0A04B21D-21598-00000243B7664613.JPG"},
     {src:"1C0D6121-B816-4CFE-A28D-5EFB68388D81-21598-00000243C2481CA2.JPG"},
   ]},
-  { label:"Malaysia ~ Sep 2026", items:[
-    {src:"IMG_0340.JPG"},
-  ]},
+  { label:"Malaysia ~ Sep 2026", items:[ {src:"IMG_0340.JPG"} ]},
 ];
 
 function attachRailArrows(wrap){
@@ -937,9 +941,7 @@ const VIDEO_GROUPS = [
     {src:"IMG_1262 (1).mp4", cap:"Oct 2024"},
     {src:"IMG_1263 (1).mp4", cap:"Oct 2024"}
   ]},
-  { label:"DJ", items:[
-    {src:"DJ.MP4", cap:"Feb 2025"}
-  ]},
+  { label:"DJ", items:[ {src:"DJ.MP4", cap:"Feb 2025"} ]},
   { label:"Holi 2025", items:[
     {src:"Waikato%20Students%E2%80%99%20Union%20%20Colors,%20chaos,%20and%20pure%20j.MOV", cap:"April 2025"},
     {src:"HOLI%20SNAP.MOV", cap:"April 2025"},
@@ -954,21 +956,12 @@ const VIDEO_GROUPS = [
     {src:"IMG_0755.mp4", cap:"June 2025"},
     {src:"IMG_0761.mp4", cap:"June 2025"}
   ]},
-  { label:"Coffee Room 2025", items:[
-    {src:"CB661AFA-86D7-48CC-B218-C082EAD7241B.MP4", cap:"Aug 2025"}
-  ]},
-  { label:"G Block 2025", items:[
-    {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"}
-  ]},
-  { label:"Grad 2026", items:[
-    {src:"GRAD%20VIDEO%20(1).mp4", cap:"April 2026"}
-  ]},
-  { label:"Fatima & Me 2026", items:[
-    {src:"lastvideo.MP4", cap:"Sep 2026"}
-  ]}
+  { label:"Coffee Room 2025", items:[ {src:"CB661AFA-86D7-48CC-B218-C082EAD7241B.MP4", cap:"Aug 2025"} ]},
+  { label:"G Block 2025", items:[ {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"} ]},
+  { label:"Grad 2026", items:[ {src:"GRAD%20VIDEO%20(1).mp4", cap:"April 2026"} ]},
+  { label:"Fatima & Me 2026", items:[ {src:"lastvideo.MP4", cap:"Sep 2026"} ]}
 ];
 
-// Normalize paths so spaces/parentheses work whether or not already encoded
 VIDEO_GROUPS.forEach(g=>g.items.forEach(it=>{ try{ it.src=encodeURI(decodeURI(it.src)); }catch(e){} }));
 
 let videoItemsFlat=[];
@@ -1042,7 +1035,7 @@ function buildMalaysia(){
     frame.innerHTML=`<video src="${MALAYSIA.src}" controls playsinline preload="metadata"></video>`;
   } else {
     frame.innerHTML=`<img src="${MALAYSIA.src}" alt="Malaysia">`;
-    frame.addEventListener('click',()=>openPhotoLb([{src:MALAYSIA.src}],0));
+    frame.onclick=()=>openPhotoLb([{src:MALAYSIA.src}],0);
   }
   document.getElementById('myTitle').textContent=MALAYSIA.title;
   document.getElementById('myCap').textContent=MALAYSIA.cap;
