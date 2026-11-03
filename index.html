@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raman</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <style>
 :root{
@@ -212,25 +212,20 @@ h1.title .r{color:var(--red);}
 .video-hero-sub{font-size:.8rem;color:var(--grey-2);margin-top:.25rem;}
 .video-hero-count{font-size:.72rem;color:var(--grey-2);letter-spacing:.08em;text-transform:uppercase;}
 .video-rows{padding:0 0 5rem;max-width:1500px;margin:0 auto;}
-@media(max-width:900px){
-  .video-hero-frame{aspect-ratio:9/13;}
-}
+@media(max-width:900px){ .video-hero-frame{aspect-ratio:9/13;} }
 
-/* FEATURE */
+/* BIG VIDEO */
 .bigvideo-wrap{max-width:1600px;margin:0 auto;padding:0 4vw 4rem;}
 .bigvideo-frame{
   position:relative;width:100%;border-radius:12px;overflow:hidden;
   background:#000;border:1px solid var(--hair);
-  box-shadow:0 40px 90px rgba(0,0,0,.6);
-  aspect-ratio:16/9;
+  box-shadow:0 40px 90px rgba(0,0,0,.6);aspect-ratio:16/9;
 }
 .bigvideo-frame video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
 .bigvideo-caption{margin-top:1.4rem;max-width:760px;}
 .bigvideo-caption h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.03em;margin-bottom:.5rem;}
 .bigvideo-caption p{font-size:.92rem;color:var(--grey-1);line-height:1.7;}
-@media(max-width:900px){
-  .bigvideo-frame{aspect-ratio:9/13;}
-}
+@media(max-width:900px){ .bigvideo-frame{aspect-ratio:9/13;} }
 
 /* MALAYSIA */
 .my-wrap{max-width:900px;margin:0 auto;padding:0 4vw 4rem;}
@@ -261,16 +256,38 @@ h1.title .r{color:var(--red);}
   border:1px solid var(--hair);aspect-ratio:2/3;transition:transform .3s,box-shadow .3s,border-color .3s;
 }
 .grad-photo:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.55);border-color:var(--red);}
-.grad-photo img,.grad-photo video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
-.grad-photo video{pointer-events:none;}
+.grad-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
 .grad-photo:hover img{transform:scale(1.05);}
-.grad-photo .vid-badge{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.2);font-size:2.4rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none;}
 .fatima-grid{grid-template-columns:repeat(3,1fr);}
 .fatima-grid .grad-photo{aspect-ratio:3/4;}
 @media(max-width:900px){
   .grad-video-frame{aspect-ratio:9/13;}
   .grad-grid,.fatima-grid{grid-template-columns:repeat(2,1fr);}
 }
+
+/* ============ LETTER PAGE ============ */
+.letter-wrap{max-width:780px;margin:0 auto;padding:0 4vw 5rem;text-align:center;}
+.envelope{
+  display:inline-flex;flex-direction:column;align-items:center;gap:.8rem;cursor:pointer;
+  padding:2.2rem 3rem;border-radius:10px;border:1px solid var(--hair);
+  background:linear-gradient(150deg,#241012,#0d0d0d);transition:transform .3s,border-color .3s;
+}
+.envelope:hover{transform:translateY(-6px);border-color:var(--red);}
+.envelope i{font-size:4rem;color:var(--red);}
+.envelope span{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-1);}
+.envelope.gone{display:none;}
+.paper{
+  display:none;text-align:left;background:#f6efe0;color:#2b2118;border-radius:6px;
+  padding:clamp(1.6rem,5vw,3.4rem);box-shadow:0 30px 80px rgba(0,0,0,.6);
+  font-family:'Playfair Display',Georgia,serif;line-height:1.9;font-size:1.05rem;
+  background-image:repeating-linear-gradient(0deg,transparent 0,transparent 33px,rgba(120,90,50,.07) 33px,rgba(120,90,50,.07) 34px);
+}
+.paper.show{display:block;animation:paperIn .9s ease both;}
+@keyframes paperIn{from{opacity:0;transform:translateY(30px) scale(.97);}to{opacity:1;transform:none;}}
+.paper .l-date{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d4b;margin-bottom:1.4rem;}
+.paper .l-greet{font-size:1.5rem;font-style:italic;margin-bottom:1.2rem;}
+.paper p{margin-bottom:1.1rem;}
+.paper .l-sign{margin-top:2rem;font-style:italic;font-size:1.15rem;}
 
 /* LIGHTBOX */
 .lightbox{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
@@ -321,6 +338,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   .rcard:hover{transform:translateY(-8px) scale(1.08);}
   .shelf-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
   footer{padding:1.6rem 1.2rem;flex-direction:column;text-align:center;}
+  .cd-box{min-width:56px;}
 }
 </style>
 </head>
@@ -336,6 +354,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     <a data-nav="bigvideo">Feature</a>
     <a data-nav="fatima">Fatima &amp; Me</a>
     <a data-nav="malaysia">Malaysia</a>
+    <a data-nav="letter">Letter</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -347,9 +366,10 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <a data-nav="bigvideo">Feature</a>
   <a data-nav="fatima">Fatima &amp; Me</a>
   <a data-nav="malaysia">Malaysia</a>
+  <a data-nav="letter">Letter</a>
 </div>
 
-<!-- HOME -->
+<!-- ============ HOME VIEW ============ -->
 <div class="view active-view" id="view-home">
   <section class="hero">
     <div class="hero-bg" style="background-image:url('IMG_0340.JPG')"></div>
@@ -370,6 +390,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
         <button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button>
         <button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> Watch Videos</button>
         <button class="btn-play" data-nav="bigvideo"><i class="bi bi-play-fill"></i> Play Feature</button>
+        <button class="btn-play" data-nav="letter"><i class="bi bi-envelope-heart-fill"></i> Read Letter</button>
       </div>
       <p class="cast-line"><b>Starring:</b> Raman</p>
       <p class="cast-line"><b>Genres:</b> Coming-of-age, Feel-good</p>
@@ -387,7 +408,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
     <h2>On the shelf</h2>
     <div class="shelf-grid">
       <div class="tile" data-nav="photos">
-        <img src="IMG_0219.JPG" alt="Photos" onerror="this.style.display='none'">
+        <img src="IMG_0219.JPG" alt="Photos">
         <div class="tile-body">
           <div class="tile-kicker">Issue 01 · Photo Gallery</div>
           <div class="tile-title">Photos</div>
@@ -395,7 +416,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
         </div>
       </div>
       <div class="tile" data-nav="videos">
-        <img src="IMG_0451.PNG" alt="Videos" onerror="this.style.display='none'">
+        <img src="IMG_0451.PNG" alt="Videos">
         <div class="tile-body">
           <div class="tile-kicker">Issue 02 · Motion Picture</div>
           <div class="tile-title">Videos</div>
@@ -434,6 +455,13 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
           <div class="tile-sub">One trip, one frame</div>
         </div>
       </div>
+      <div class="tile" data-nav="letter">
+        <div class="tile-body">
+          <div class="tile-kicker">Issue 07 · Just For You</div>
+          <div class="tile-title">A Letter</div>
+          <div class="tile-sub">Written for Raman</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -449,7 +477,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- PHOTOS -->
+<!-- ============ PHOTOS VIEW ============ -->
 <div class="view" id="view-photos">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 01 · 2024–2026 ✦</p>
@@ -463,7 +491,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- VIDEOS -->
+<!-- ============ VIDEOS VIEW ============ -->
 <div class="view" id="view-videos">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 02 · Now Playing ✦</p>
@@ -492,7 +520,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- GRADUATION -->
+<!-- ============ GRADUATION VIEW ============ -->
 <div class="view" id="view-graduation">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 03 · The Big Day ✦</p>
@@ -515,7 +543,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- FEATURE -->
+<!-- ============ BIG SINGLE VIDEO VIEW ============ -->
 <div class="view" id="view-bigvideo">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 04 · The Feature ✦</p>
@@ -541,7 +569,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- FATIMA -->
+<!-- ============ FATIMA & ME VIEW ============ -->
 <div class="view" id="view-fatima">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 05 · Fatima &amp; Me ✦</p>
@@ -561,7 +589,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   </footer>
 </div>
 
-<!-- MALAYSIA -->
+<!-- ============ MALAYSIA VIEW ============ -->
 <div class="view" id="view-malaysia">
   <section class="cover">
     <p class="cover-eyebrow">✦ Issue No. 06 · Travel ✦</p>
@@ -578,6 +606,26 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <footer>
     <div class="footer-brand">Raman<span> </span></div>
     <div class="footer-sub">✦ Issue 06 · Malaysia ✦</div>
+  </footer>
+</div>
+
+<!-- ============ LETTER VIEW ============ -->
+<div class="view" id="view-letter">
+  <section class="cover">
+    <p class="cover-eyebrow">✦ Issue No. 07 · Just For You ✦</p>
+    <h1 class="cover-title">A <span>Letter</span></h1>
+    <p class="cover-sub">Written for Raman, and only him.</p>
+  </section>
+  <section class="letter-wrap">
+    <div class="envelope" id="envelope">
+      <i class="bi bi-envelope-heart-fill"></i>
+      <span>Tap to open</span>
+    </div>
+    <article class="paper" id="paper"></article>
+  </section>
+  <footer>
+    <div class="footer-brand">Raman<span> </span></div>
+    <div class="footer-sub">✦ Issue 07 · Letter ✦</div>
   </footer>
 </div>
 
@@ -604,8 +652,12 @@ function onScroll(){ mainNav.classList.toggle('scrolled', window.scrollY>40); }
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
+/* ── HELPERS ── */
+// Encodes file names with spaces, but leaves already-encoded names alone
+const enc = s => (s.includes('%') ? s : encodeURI(s));
+
 /* ── VIEW SWITCHING ── */
-const viewNames=['home','photos','videos','graduation','bigvideo','fatima','malaysia'];
+const viewNames=['home','photos','videos','graduation','bigvideo','fatima','malaysia','letter'];
 const views={}; viewNames.forEach(n=>views[n]=document.getElementById('view-'+n));
 let inited={};
 
@@ -640,7 +692,7 @@ hamburger.addEventListener('click', ()=>{
   mobileDrawer.classList.toggle('open', open);
 });
 
-/* ── HIGHLIGHT REEL ── */
+/* ── HIGHLIGHT REEL (home page) ── */
 const HIGHLIGHTS = [
   {src:"highlight-1.jpg", title:"The Beginning", desc:"Every journey starts with one brave decision."},
   {src:"highlight-2.jpg", title:"Early Days", desc:"New places, unfamiliar faces, and countless firsts."},
@@ -670,22 +722,14 @@ const PHOTO_GROUPS = [
     {src:"CB1F2FEF-4596-4A3B-839C-79C779C238D8-19316-000002E149378C4E.JPG"},
     {src:"D1A2205D-5BE2-429B-82ED-33CE1E342AF7-19316-000002E188E55227.JPG"},
   ]},
-  { label:"DJ 2025", items:[
-    {src:"DJ_044.jpg"},
-  ]},
-  { label:"HOLI 2025", items:[
-    {src:"IMG_0451.PNG"},
-    {src:"HOLI SNAP_007.jpg"},
-  ]},
+  { label:"DJ 2025", items:[ {src:"DJ_044.jpg"} ]},
+  { label:"HOLI 2025", items:[ {src:"IMG_0451.PNG"}, {src:"HOLI SNAP_007.jpg"} ]},
   { label:"PRESENTATION 2025", items:[
     {src:"Screen Shot 2025-05-08 at 2.00.42 AM.png"},
     {src:"44742226e3f640dab1c1532699378662_139.jpg"},
   ]},
   { label:"MSB 2025", items:[
-    {src:"IMG_0761_001.jpg"},
-    {src:"IMG_0761_005.jpg"},
-    {src:"IMG_0761_084.jpg"},
-    {src:"IMG_0756 2.jpg"},
+    {src:"IMG_0761_001.jpg"}, {src:"IMG_0761_005.jpg"}, {src:"IMG_0761_084.jpg"}, {src:"IMG_0756 2.jpg"},
   ]},
   { label:"COFFEE AND RANDOM 2025", items:[
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_011.jpg"},
@@ -693,10 +737,7 @@ const PHOTO_GROUPS = [
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_055.jpg"},
     {src:"C0D312B7-D69C-42D5-9C05-7F99C435A83C_088.jpg"},
   ]},
-  { label:"Graduation ~ April 2026", items:[
-    {src:"GRAD 1 .jpg"},
-    {src:"GRAD 2 .jpg"},
-  ]},
+  { label:"Graduation ~ April 2026", items:[ {src:"GRAD 1 .jpg"}, {src:"GRAD 2 .jpg"} ]},
   { label:"Fatima & Me ~ Sep 2026", items:[
     {src:"IMG_0218.JPG"},
     {src:"F7A1A4A9-5174-4264-B297-143A17DB764E-21598-000002436E6537A3.JPG"},
@@ -705,9 +746,7 @@ const PHOTO_GROUPS = [
     {src:"D26F9D00-6F4C-412F-9A83-9E5F0A04B21D-21598-00000243B7664613.JPG"},
     {src:"1C0D6121-B816-4CFE-A28D-5EFB68388D81-21598-00000243C2481CA2.JPG"},
   ]},
-  { label:"Malaysia ~ Sep 2026", items:[
-    {src:"IMG_0340.JPG"},
-  ]},
+  { label:"Malaysia ~ Sep 2026", items:[ {src:"IMG_0340.JPG"} ]},
 ];
 
 function attachRailArrows(wrap){
@@ -733,9 +772,11 @@ function buildPhotoRows(){
       </div>`;
     const rail=block.querySelector('.rail');
     group.items.forEach(item=>{
-      const idx=globalIdx++; allItems.push(item);
+      const idx=globalIdx++;
+      const fixed={src:enc(item.src)};
+      allItems.push(fixed);
       const card=document.createElement('div'); card.className='rcard';
-      card.innerHTML=`<img src="${item.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
+      card.innerHTML=`<img src="${fixed.src}" alt="Photo" loading="lazy" onerror="this.closest('.rcard').style.display='none'"><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-arrows-angle-expand"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-fill"></i>${group.label}</span></div>`;
       card.addEventListener('click',()=>openPhotoLb(allItems, idx));
       rail.appendChild(card);
     });
@@ -747,7 +788,7 @@ function buildPhotoRows(){
 
 let photoItemsFlat=[];
 
-/* ── VIDEOS DATA (FIXED: broken syntax in the Grad / Fatima groups) ── */
+/* ── VIDEOS DATA ── */
 const VIDEO_GROUPS = [
   { label:"October 2024", items:[
     {src:"IMG_2697.MOV", cap:"Oct 2024"},
@@ -755,9 +796,7 @@ const VIDEO_GROUPS = [
     {src:"IMG_1263.MP4", cap:"Oct 2024"},
     {src:"boys%20.mov", cap:"Oct 2024"}
   ]},
-  { label:"DJ", items:[
-    {src:"DJ.MP4", cap:"Feb 2025"}
-  ]},
+  { label:"DJ", items:[ {src:"DJ.MP4", cap:"Feb 2025"} ]},
   { label:"Holi 2025", items:[
     {src:"Waikato%20Students%E2%80%99%20Union%20%20Colors,%20chaos,%20and%20pure%20j.MOV", cap:"April 2025"},
     {src:"HOLI%20SNAP.MOV", cap:"April 2025"},
@@ -774,22 +813,14 @@ const VIDEO_GROUPS = [
     {src:"IMG_0761.MOV", cap:"June 2025"},
     {src:"IMG_0760.MOV", cap:"June 2025"}
   ]},
-  { label:"Fifa in the Pa 2025", items:[
-    {src:"IMG_1330.MOV", cap:"June 2025"}
-  ]},
-  { label:"Coffee Room 2025", items:[
-    {src:"CB661AFA-86D7-48CC-B218-C082EAD7241B.MP4", cap:"Aug 2025"}
-  ]},
-  { label:"G Block 2025", items:[
-    {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"}
-  ]},
+  { label:"Fifa in the Pa 2025", items:[ {src:"IMG_1330.MOV", cap:"June 2025"} ]},
+  { label:"Coffee Room 2025", items:[ {src:"CB661AFA-86D7-48CC-B218-C082EAD7241B.MP4", cap:"Aug 2025"} ]},
+  { label:"G Block 2025", items:[ {src:"CA8AA3C1-72DD-4717-ADAA-B0F0B85B7864.MP4", cap:"June 2025"} ]},
   { label:"Grad 2026", items:[
     {src:"GRAD%20VIDEO.mov", cap:"April 2026"},
     {src:"GRAD%20VIDEO%20(1).mp4", cap:"April 2026"}
   ]},
-  { label:"Fatima & Me 2026", items:[
-    {src:"lastvideo.MP4", cap:"Sep 2026"}
-  ]}
+  { label:"Fatima & Me 2026", items:[ {src:"lastvideo.MP4", cap:"Sep 2026"} ]}
 ];
 
 let videoItemsFlat=[];
@@ -817,7 +848,7 @@ function buildVideoRows(){
   container.innerHTML='';
 
   const allItems=[];
-  VIDEO_GROUPS.forEach(g=>g.items.forEach(it=>allItems.push({...it, group:g.label})));
+  VIDEO_GROUPS.forEach(g=>g.items.forEach(it=>allItems.push({...it, src:enc(it.src), group:g.label})));
   videoItemsFlat=allItems;
 
   const mp=document.getElementById('mainVideoPlayer');
@@ -841,9 +872,10 @@ function buildVideoRows(){
     const rail=block.querySelector('.rail');
     group.items.forEach(item=>{
       const idx=globalIdx++;
+      const fixed=allItems[idx];
       const card=document.createElement('div'); card.className='rcard video-card';
-      card.innerHTML=`<video src="${item.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${item.cap||group.label}</span></div>`;
-      card.addEventListener('click', ()=>setMainVideo(item, idx, allItems.length, group.label));
+      card.innerHTML=`<video src="${fixed.src}#t=0.1" muted playsinline preload="metadata" onerror="this.style.display='none'"></video><span class="num-badge">${idx+1}</span><div class="play-ov"><i class="bi bi-play-circle-fill"></i></div><div class="card-info"><span class="ci-label"><i class="bi bi-camera-video-fill"></i>${item.cap||group.label}</span></div>`;
+      card.addEventListener('click', ()=>setMainVideo(fixed, idx, allItems.length, group.label));
       rail.appendChild(card);
     });
     container.appendChild(block);
@@ -854,12 +886,7 @@ function buildVideoRows(){
 }
 
 /* ── MALAYSIA ── */
-const MALAYSIA = {
-  type:"photo",
-  src:"IMG_0340.JPG",
-  title:"Malaysia",
-  cap:"September 2026"
-};
+const MALAYSIA = { type:"photo", src:"IMG_0340.JPG", title:"Malaysia", cap:"September 2026" };
 
 function buildMalaysia(){
   const frame=document.getElementById('myFrame');
@@ -867,39 +894,31 @@ function buildMalaysia(){
   if(MALAYSIA.type==='video'){
     frame.style.cursor='default';
     frame.style.transform='none';
-    frame.innerHTML=`<video src="${MALAYSIA.src}" controls playsinline preload="metadata"></video>`;
+    frame.innerHTML=`<video src="${enc(MALAYSIA.src)}" controls playsinline preload="metadata"></video>`;
   } else {
-    frame.innerHTML=`<img src="${MALAYSIA.src}" alt="Malaysia">`;
-    frame.addEventListener('click',()=>openPhotoLb([{src:MALAYSIA.src}],0));
+    frame.innerHTML=`<img src="${enc(MALAYSIA.src)}" alt="Malaysia">`;
+    frame.addEventListener('click',()=>openPhotoLb([{src:enc(MALAYSIA.src)}],0));
   }
   document.getElementById('myTitle').textContent=MALAYSIA.title;
   document.getElementById('myCap').textContent=MALAYSIA.cap;
 }
 
-/* ── GRADUATION (FIXED: video no longer shoved into the photos list as an <img>) ── */
+/* ── GRADUATION ── */
 const GRADUATION = {
-  video:"GRAD%20VIDEO.mov",
-  photos:[
-    {src:"BEFORE%20GRAD.JPG"},
-    {src:"GRAD%201%20.jpg"},
-    {src:"GRAD%202%20.jpg"},
-    {src:"GRAD%20VIDEO%20(1).mp4", type:"video", cap:"April 2026"}
-  ]
+  video:"GRAD VIDEO.mov",
+  photos:[ {src:"BEFORE GRAD.JPG"}, {src:"GRAD 1 .jpg"}, {src:"GRAD 2 .jpg"} ]
 };
 
 function buildGraduation(){
   const v=document.getElementById('gradVideoPlayer');
-  if(v) v.src=GRADUATION.video;
+  if(v) v.src=enc(GRADUATION.video);
   const grid=document.getElementById('gradGrid');
   grid.innerHTML='';
-  GRADUATION.photos.forEach((p,i)=>{
+  const fixed=GRADUATION.photos.map(p=>({src:enc(p.src)}));
+  fixed.forEach((p,i)=>{
     const d=document.createElement('div'); d.className='grad-photo';
-    if(p.type==='video'){
-      d.innerHTML=`<video src="${p.src}#t=0.1" muted playsinline preload="metadata" onerror="this.closest('.grad-photo').style.display='none'"></video><div class="vid-badge"><i class="bi bi-play-circle-fill"></i></div>`;
-    } else {
-      d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
-    }
-    d.addEventListener('click',()=>openPhotoLb(GRADUATION.photos,i));
+    d.innerHTML=`<img src="${p.src}" alt="Graduation photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    d.addEventListener('click',()=>openPhotoLb(fixed,i));
     grid.appendChild(d);
   });
 }
@@ -919,14 +938,46 @@ const FATIMA = {
 
 function buildFatima(){
   const v=document.getElementById('fatimaVideoPlayer');
-  if(v) v.src=FATIMA.video;
+  if(v) v.src=enc(FATIMA.video);
   const grid=document.getElementById('fatimaGrid');
   grid.innerHTML='';
-  FATIMA.photos.forEach((p,i)=>{
+  const fixed=FATIMA.photos.map(p=>({src:enc(p.src)}));
+  fixed.forEach((p,i)=>{
     const d=document.createElement('div'); d.className='grad-photo';
-    d.innerHTML=`<img src="${encodeURI(p.src)}" alt="Fatima and me photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
-    d.addEventListener('click',()=>openPhotoLb(FATIMA.photos.map(x=>({src:encodeURI(x.src)})),i));
+    d.innerHTML=`<img src="${p.src}" alt="Fatima and me photo ${i+1}" loading="lazy" onerror="this.closest('.grad-photo').style.display='none'">`;
+    d.addEventListener('click',()=>openPhotoLb(fixed,i));
     grid.appendChild(d);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   LETTER — EDIT THIS TEXT with your own words
+   Each string in PARAGRAPHS is one paragraph.
+   ═══════════════════════════════════════════════ */
+const LETTER = {
+  date: "4 November 2026",
+  greeting: "Dear Raman,",
+  paragraphs: [
+    "If you're reading this, the clock finally ran out and you waited, which is already a small miracle for you.",
+    "I wanted to put something together that holds the last couple of years in one place: the late nights, the laughs, the chaos, the quiet moments in between. Scrolling through all of it, one thing stood out. You turned ordinary days into memories worth keeping.",
+    "Thank you for being the kind of person people want to have around. Thank you for every moment, big and small. I hope this story keeps going for a very long time, and I hope I get to be in plenty more chapters.",
+    "Whatever comes next, I'm proud of you. Always."
+  ],
+  sign: "Forever yours,<br>[Your name]"
+};
+
+function buildLetter(){
+  const paper=document.getElementById('paper');
+  const env=document.getElementById('envelope');
+  paper.innerHTML =
+    `<div class="l-date">${LETTER.date}</div>
+     <div class="l-greet">${LETTER.greeting}</div>
+     ${LETTER.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+     <div class="l-sign">${LETTER.sign}</div>`;
+  env.addEventListener('click',()=>{
+    env.classList.add('gone');
+    paper.classList.add('show');
+    paper.scrollIntoView({behavior:'smooth',block:'start'});
   });
 }
 
@@ -942,9 +993,10 @@ function initView(name){
   if(name==='malaysia') buildMalaysia();
   if(name==='graduation') buildGraduation();
   if(name==='fatima') buildFatima();
+  if(name==='letter') buildLetter();
 }
 
-/* ── LIGHTBOX ── */
+/* ── PHOTO / VIDEO LIGHTBOX ── */
 const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbVideo=document.getElementById('lbVideo'), lbCounter=document.getElementById('lbCounter');
 let lbItems=[], lbCurrent=0;
 function renderLbItem(){
@@ -1002,6 +1054,7 @@ inited.home=true;
     return null;
   }
   const store = pickStore();
+  const isLocked = () => false;
   function readState(){ if(!store) return null; try{ const r=store.getItem(STORAGE_KEY); return r?JSON.parse(r):null; }catch(e){ return null; } }
   function writeState(s){ if(!store) return; try{ store.setItem(STORAGE_KEY, JSON.stringify(s)); }catch(e){} }
   function init(){
@@ -1023,16 +1076,16 @@ inited.home=true;
       else { audio.pause(); setUI(false); }
     }); }
     if(!audio) return;
-    audio.addEventListener("play",()=>setUI(true));
+    audio.addEventListener("play",()=>{ if(isLocked()){ audio.pause(); return; } setUI(true); });
     audio.addEventListener("pause",()=>setUI(false));
     try{
       const saved=readState(); let resumed=false;
       if(saved && typeof saved.time==="number"){
         const seek=()=>{ if(audio.readyState>=1) audio.currentTime=saved.time; else audio.addEventListener("loadedmetadata",()=>{audio.currentTime=saved.time;},{once:true}); };
         seek();
-        if(saved.playing) audio.play().then(()=>{resumed=true;}).catch(()=>{});
+        if(saved.playing && !isLocked()) audio.play().then(()=>{resumed=true;}).catch(()=>{});
       }
-      function unlock(){ if(resumed||audio.paused===false){cleanup();return;} const s=readState(); if(s&&s.playing&&audio.paused) audio.play().catch(()=>{}); cleanup(); }
+      function unlock(){ if(isLocked()) return; if(resumed||audio.paused===false){cleanup();return;} const s=readState(); if(s&&s.playing&&audio.paused) audio.play().catch(()=>{}); cleanup(); }
       function cleanup(){ document.removeEventListener("click",unlock); document.removeEventListener("keydown",unlock); document.removeEventListener("touchstart",unlock); }
       document.addEventListener("click",unlock); document.addEventListener("keydown",unlock); document.addEventListener("touchstart",unlock);
       setInterval(()=>{ writeState({time:audio.currentTime||0, playing:!audio.paused}); },1000);
