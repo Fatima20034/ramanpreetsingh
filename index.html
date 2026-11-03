@@ -93,6 +93,7 @@ h1.title .r{color:var(--red);}
 .stat span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-2);}
 
 /* COVER HEADER */
+.page-hero{min-height:78vh;margin-bottom:2rem;}
 .cover{position:relative;padding:9rem 4vw 3rem;min-height:46vh;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center 25%;background-color:#0b0b0b;margin:0 0 2rem;}
 .cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,.35) 0%,rgba(20,20,20,.55) 60%,var(--bg) 100%),linear-gradient(90deg,rgba(20,20,20,.7),transparent 70%);}
 .cover>*{position:relative;z-index:2;}
@@ -352,10 +353,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- PHOTOS -->
 <div class="view" id="view-photos">
-  <section class="cover" style="background-image:url('IMG_0219.JPG')">
-    <p class="cover-eyebrow">✦ Issue No. 01 · 2024–2026 ✦</p>
-    <h1 class="cover-title">Photo <span>Gallery</span></h1>
-    <p class="cover-sub">Every small moment somehow becomes a memory worth keeping.</p>
+  <section class="hero page-hero">
+    <div class="hero-bg" style="background-image:url('IMG_0219.JPG')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row"><span class="badge">Issue No. 01</span><span>2024 ~ 2026 · Photo Gallery</span></div>
+      <h1 class="title">Photo <span class="r">Gallery</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">Every moment, saved</span></div>
+      <div class="meta-row"><span>Photo Gallery</span><span>Collections</span><span><i class="bi bi-hd"></i> HD</span></div>
+      <p class="synopsis">Every small moment somehow becomes a memory worth keeping. Scroll through the collections below to relive them.</p>
+      <div class="action-row"><button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> Watch Videos</button><button class="btn-play" data-nav="bigvideo"><i class="bi bi-play-fill"></i> Play Feature</button></div>
+    </div>
   </section>
   <section class="rows-section" id="rows-photos"></section>
   <footer>
@@ -366,10 +374,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- VIDEOS -->
 <div class="view" id="view-videos">
-  <section class="cover" style="background-image:url('IMG_0451.PNG')">
-    <p class="cover-eyebrow">✦ Issue No. 02 · Now Playing ✦</p>
-    <h1 class="cover-title">Video <span>Collection</span></h1>
-    <p class="cover-sub">The moments that were too good to just be photos. Press play.</p>
+  <section class="hero page-hero">
+    <div class="hero-bg" style="background-image:url('IMG_0451.PNG')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row"><span class="badge">Issue No. 02</span><span>Now Playing · Video Collection</span></div>
+      <h1 class="title">Video <span class="r">Collection</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">Too good to just be photos</span></div>
+      <div class="meta-row"><span>Motion Picture</span><span>Moments</span><span><i class="bi bi-hd"></i> HD</span></div>
+      <p class="synopsis">The moments that were too good to just be photos. Press play.</p>
+      <div class="action-row"><button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button><button class="btn-play" data-nav="bigvideo"><i class="bi bi-play-fill"></i> Play Feature</button></div>
+    </div>
   </section>
   <section class="video-hero">
     <div class="video-hero-frame">
@@ -392,10 +407,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- GRADUATION -->
 <div class="view" id="view-graduation">
-  <section class="cover" style="background-image:url('BEFORE%20GRAD.JPG')">
-    <p class="cover-eyebrow">✦ Issue No. 03 · The Big Day ✦</p>
-    <h1 class="cover-title">Grad<span>uation</span></h1>
-    <p class="cover-sub">April 2026. Everything led to this.</p>
+  <section class="hero page-hero">
+    <div class="hero-bg" style="background-image:url('BEFORE%20GRAD.JPG')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row"><span class="badge">Issue No. 03</span><span>The Big Day · Graduation</span></div>
+      <h1 class="title">Graduation <span class="r">Day</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">The chapter that made it all worth it</span></div>
+      <div class="meta-row"><span>Class of 2026</span><span>April 2026</span><span><i class="bi bi-hd"></i> HD</span></div>
+      <p class="synopsis">April 2026. Every late night, every assignment and every friendship led to this day.</p>
+      <div class="action-row"><button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button><button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> Watch Videos</button></div>
+    </div>
   </section>
   <section class="grad-wrap">
     <div class="grad-video-frame">
@@ -415,10 +437,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- FEATURE -->
 <div class="view" id="view-bigvideo">
-  <section class="cover" style="background-image:url('DJ_044.jpg')">
-    <p class="cover-eyebrow">✦ Issue No. 04 · The Feature ✦</p>
-    <h1 class="cover-title">The <span>Feature</span></h1>
-    <p class="cover-sub">One video, full screen, no distractions.</p>
+  <section class="hero page-hero">
+    <div class="hero-bg" style="background-image:url('DJ_044.jpg')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row"><span class="badge">Issue No. 04</span><span>The Feature · Full Screen</span></div>
+      <h1 class="title">The <span class="r">Feature</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">No captions needed</span></div>
+      <div class="meta-row"><span>Full Screen</span><span>2024–2026</span><span><i class="bi bi-hd"></i> HD</span></div>
+      <p class="synopsis">One video, full screen, no distractions. The moment that says it all — just watch.</p>
+      <div class="action-row"><button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> More Videos</button><button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button></div>
+    </div>
   </section>
   <section class="bigvideo-wrap">
     <div class="bigvideo-frame">
@@ -439,10 +468,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- FATIMA & ME -->
 <div class="view" id="view-fatima">
-  <section class="cover" style="background-image:url('IMG_0218.JPG')">
-    <p class="cover-eyebrow">✦ Issue No. 05 · Fatima &amp; Me ✦</p>
-    <h1 class="cover-title">Fatima <span>&amp; Me</span></h1>
-    <p class="cover-sub">September 2026. Some chapters are better shared.</p>
+  <section class="hero page-hero">
+    <div class="hero-bg" style="background-image:url('IMG_0218.JPG')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row"><span class="badge">Issue No. 05</span><span>September 2026 · Fatima &amp; Me</span></div>
+      <h1 class="title">Fatima <span class="r">&amp; Me</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">Some chapters are better shared</span></div>
+      <div class="meta-row"><span>Sep 2026</span><span>Together</span><span><i class="bi bi-hd"></i> HD</span></div>
+      <p class="synopsis">Some chapters are better shared. Here are a few of ours.</p>
+      <div class="action-row"><button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button><button class="btn-play" data-nav="videos"><i class="bi bi-play-fill"></i> Watch Videos</button></div>
+    </div>
   </section>
   <section class="grad-wrap">
     <div class="grad-video-frame">
@@ -459,10 +495,17 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- MALAYSIA -->
 <div class="view" id="view-malaysia">
-  <section class="cover" style="background-image:url('IMG_0340.JPG')">
-    <p class="cover-eyebrow">✦ Issue No. 06 · Travel ✦</p>
-    <h1 class="cover-title">Mala<span>ysia</span></h1>
-    <p class="cover-sub">One trip, one frame.</p>
+  <section class="hero page-hero">
+    <div class="hero-bg" style="background-image:url('IMG_0340.JPG')"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow-row"><span class="badge">Issue No. 06</span><span>Travel · Malaysia</span></div>
+      <h1 class="title">Mala<span class="r">ysia</span></h1>
+      <div class="match"><span class="match-pct">100% Match</span><span class="match-label">One trip, one frame</span></div>
+      <div class="meta-row"><span>Sep 2026</span><span>Travel</span><span><i class="bi bi-hd"></i> HD</span></div>
+      <p class="synopsis">One trip, one frame.</p>
+      <div class="action-row"><button class="btn-play" data-nav="photos"><i class="bi bi-play-fill"></i> Browse Photos</button><button class="btn-play" data-nav="home"><i class="bi bi-play-fill"></i> Back Home</button></div>
+    </div>
   </section>
   <section class="my-wrap">
     <div class="my-frame" id="myFrame"></div>
