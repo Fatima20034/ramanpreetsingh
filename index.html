@@ -93,7 +93,9 @@ h1.title .r{color:var(--red);}
 .stat span{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-2);}
 
 /* COVER HEADER */
-.cover{padding:7rem 4vw 2rem;max-width:1400px;margin:0 auto;}
+.cover{position:relative;padding:9rem 4vw 3rem;min-height:46vh;display:flex;flex-direction:column;justify-content:flex-end;background-size:cover;background-position:center 25%;background-color:#0b0b0b;margin:0 0 2rem;}
+.cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,20,.35) 0%,rgba(20,20,20,.55) 60%,var(--bg) 100%),linear-gradient(90deg,rgba(20,20,20,.7),transparent 70%);}
+.cover>*{position:relative;z-index:2;}
 .cover-eyebrow{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;}
 .cover-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5.5vw,4rem);letter-spacing:.02em;line-height:.95;}
 .cover-title span{color:var(--red);}
@@ -350,7 +352,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- PHOTOS -->
 <div class="view" id="view-photos">
-  <section class="cover">
+  <section class="cover" style="background-image:url('IMG_0219.JPG')">
     <p class="cover-eyebrow">✦ Issue No. 01 · 2024–2026 ✦</p>
     <h1 class="cover-title">Photo <span>Gallery</span></h1>
     <p class="cover-sub">Every small moment somehow becomes a memory worth keeping.</p>
@@ -364,7 +366,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- VIDEOS -->
 <div class="view" id="view-videos">
-  <section class="cover">
+  <section class="cover" style="background-image:url('IMG_0451.PNG')">
     <p class="cover-eyebrow">✦ Issue No. 02 · Now Playing ✦</p>
     <h1 class="cover-title">Video <span>Collection</span></h1>
     <p class="cover-sub">The moments that were too good to just be photos. Press play.</p>
@@ -390,7 +392,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- GRADUATION -->
 <div class="view" id="view-graduation">
-  <section class="cover">
+  <section class="cover" style="background-image:url('BEFORE%20GRAD.JPG')">
     <p class="cover-eyebrow">✦ Issue No. 03 · The Big Day ✦</p>
     <h1 class="cover-title">Grad<span>uation</span></h1>
     <p class="cover-sub">April 2026. Everything led to this.</p>
@@ -413,7 +415,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- FEATURE -->
 <div class="view" id="view-bigvideo">
-  <section class="cover">
+  <section class="cover" style="background-image:url('DJ_044.jpg')">
     <p class="cover-eyebrow">✦ Issue No. 04 · The Feature ✦</p>
     <h1 class="cover-title">The <span>Feature</span></h1>
     <p class="cover-sub">One video, full screen, no distractions.</p>
@@ -437,7 +439,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- FATIMA & ME -->
 <div class="view" id="view-fatima">
-  <section class="cover">
+  <section class="cover" style="background-image:url('IMG_0218.JPG')">
     <p class="cover-eyebrow">✦ Issue No. 05 · Fatima &amp; Me ✦</p>
     <h1 class="cover-title">Fatima <span>&amp; Me</span></h1>
     <p class="cover-sub">September 2026. Some chapters are better shared.</p>
@@ -457,7 +459,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
 
 <!-- MALAYSIA -->
 <div class="view" id="view-malaysia">
-  <section class="cover">
+  <section class="cover" style="background-image:url('IMG_0340.JPG')">
     <p class="cover-eyebrow">✦ Issue No. 06 · Travel ✦</p>
     <h1 class="cover-title">Mala<span>ysia</span></h1>
     <p class="cover-sub">One trip, one frame.</p>
@@ -488,7 +490,8 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <button class="player-btn" id="playBtn"><i class="bi bi-play-fill" id="playIcon"></i></button>
   <span class="player-label">Theme</span>
   <div class="player-bars"><span></span><span></span><span></span></div>
-  <audio id="bgAudio" loop><source src="ramansbackground.mp3" type="audio/mp4"></audio>
+  <audio id="bgAudio" loop><source src="theme.m4a" type="audio/mp4"></audio>
+</div>
 
 <script>
 /* SCROLL-AWARE NAV */
