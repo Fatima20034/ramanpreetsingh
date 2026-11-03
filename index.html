@@ -490,7 +490,7 @@ footer{padding:2.2rem 4vw;border-top:1px solid var(--hair);display:flex;align-it
   <button class="player-btn" id="playBtn"><i class="bi bi-play-fill" id="playIcon"></i></button>
   <span class="player-label">Theme</span>
   <div class="player-bars"><span></span><span></span><span></span></div>
-  <audio id="bgAudio" loop><source src="ramansbackground.mp3" type="audio/mp4"></audio>
+  <audio id="bgAudio" loop><source src="ramansbackground.mp3" type="audio/mpeg"></audio>
 </div>
 
 <script>
@@ -534,7 +534,7 @@ hamburger.addEventListener('click', ()=>{
   mobileDrawer.classList.toggle('open', open);
 });
 
-/* HIGHLIGHT REEL (uses photos that exist in the repo) */
+/* HIGHLIGHT REEL */
 const HIGHLIGHTS = [
   {src:"IMG_0218.JPG", title:"The Beginning", desc:"Every journey starts with one brave decision."},
   {src:"DJ_044.jpg", title:"Early Days", desc:"New places, unfamiliar faces, and countless firsts."},
@@ -555,7 +555,7 @@ function buildHighlights(){
 }
 document.addEventListener('DOMContentLoaded', buildHighlights);
 
-/* PHOTOS DATA (only files that exist in the repo) */
+/* PHOTOS DATA */
 const PHOTO_GROUPS = [
   { label:"October 2024", items:[
     {src:"FE684D7A-9632-43C9-BD3D-1A45694C96D8-19316-000002E1E0D41067.JPG"},
@@ -649,7 +649,7 @@ function buildPhotoRows(){
 }
 let photoItemsFlat=[];
 
-/* VIDEOS DATA (only files that exist in the repo) */
+/* VIDEOS DATA (FIXED: all groups are now inside one array) */
 const VIDEO_GROUPS = [
   { label:"October 2024", items:[
     {src:"boys%20.mp4", cap:"Oct 2024"},
@@ -688,8 +688,8 @@ const VIDEO_GROUPS = [
   ]}
 ];
 
-// Normalize every path so spaces/parentheses work whether or not they're already encoded
-VIDEO_GROUPS.forEach(g => g.items.forEach(it => { it.src = encodeURI(decodeURI(it.src)); }));
+// Normalize paths so spaces/parentheses work whether or not already encoded
+VIDEO_GROUPS.forEach(g=>g.items.forEach(it=>{ try{ it.src=encodeURI(decodeURI(it.src)); }catch(e){} }));
 
 let videoItemsFlat=[];
 let mainVideoErrorBound=false;
