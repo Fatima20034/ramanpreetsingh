@@ -600,7 +600,7 @@ body.locked, body.gate-open{overflow:hidden;}
         <div class="cd-box"><b id="cdM">00</b><span>Mins</span></div>
         <div class="cd-box"><b id="cdS">00</b><span>Secs</span></div>
       </div>
-      <div class="lock-when">Unlocks at <b>11:00 PM IST</b> · 4 Nov 2026<br>
+      <div class="lock-when">Unlocks at <b>10:00 PM IST</b> · 4 Nov 2026<br>
         That's <b id="localWhen">—</b> where you are.</div>
 
       <button class="btn-try" id="tryBtn"><i class="bi bi-key-fill"></i> Try to open anyway</button>
@@ -624,9 +624,8 @@ body.locked, body.gate-open{overflow:hidden;}
 /* =====================================================
    LOCK CONFIG  — change these two things if needed
    ===================================================== */
-// 11:00 PM IST (UTC+05:30) on 4 November 2026
-const UNLOCK_AT = Date.parse('2026-11-04T23:00:00+05:30');
-
+// 10:00 PM IST (UTC+05:30) on 4 November 2026
+const UNLOCK_AT = Date.parse('2026-11-04T22:00:00+05:30');
 // Edit the letter here
 const LETTER = {
   date: "4 November 2026",
